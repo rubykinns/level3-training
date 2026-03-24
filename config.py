@@ -9,7 +9,7 @@
 # CHATBOT_SYSTEM_PROMPT : AI instructor behavior for Group 4
 # =============================================================================
 
-ANTHROPIC_API_KEY = ""
+ANTHROPIC_API_KEY = "your-api-key-here"
 MODEL = "claude-haiku-4-5-20251001"
 import base64
 
@@ -87,11 +87,11 @@ SCRIPTED_TOPICS = [
                     "The vehicle <b>steers, accelerates, and brakes</b> on its own. "
                     "The system monitors the environment — not you.<br><br>"
                     "⚠️ <b>Conditional, not full automation:</b> <br><br>"
-                    "It only works within a **specific Operational Design Domain (ODD)** — "
+                    "It only works within a <b>specific Operational Design Domain (ODD)</b> — "
                     "defined road types, speed ranges, and weather conditions set by the manufacturer.<br><br>"
                     "🔄 <b>Takeover is your responsibility</b>:<br><br>"
-                    "When the system **reaches its limits**, it issues a **Takeover Request (ToR)**. "
-                    "You **MUST** respond promptly.\n\n"
+                    "When the system <b>reaches its limits</b>, it issues a **Takeover Request (ToR)**. "
+                    "You <b>MUST</b>respond promptly.<br><br>"
                     "Does this definition of Level 3 make sense to you?"
                 ),
                 "yes_followup": None,
