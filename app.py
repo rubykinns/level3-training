@@ -13,6 +13,7 @@
 # =============================================================================
 
 import streamlit as st
+ANTHROPIC_API_KEY = st.secrets.get("ANTHROPIC_API_KEY", "your-api-key-here")
 import json
 import os
 

@@ -9,7 +9,7 @@
 # CHATBOT_SYSTEM_PROMPT : AI instructor behavior for Group 4
 # =============================================================================
 
-ANTHROPIC_API_KEY = ""
+ANTHROPIC_API_KEY = "your-api-key-here"
 MODEL = "claude-haiku-4-5-20251001"
 import base64
 
