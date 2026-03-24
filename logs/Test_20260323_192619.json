@@ -1,0 +1,64 @@
+{
+  "participant_id": "Test",
+  "training_group": "3",
+  "knowledge_group": "A",
+  "age": null,
+  "driving_years": null,
+  "session_start": "2026-03-23T19:22:21.884448",
+  "session_end": "2026-03-23T19:26:19.899103",
+  "quiz_answers": [
+    {
+      "question": "[QUESTION 1] What does SAE Level 3 automation require of the driver?",
+      "options": {
+        "A": "The driver can sleep as the system handles everything",
+        "B": "The driver must keep hands on the wheel at all times",
+        "C": "The driver must be ready to take over when the system requests it",
+        "D": "The driver must monitor the road continuously"
+      },
+      "selected": "C",
+      "correct": "C",
+      "is_correct": true,
+      "explanation": "Level 3 requires the driver to respond to a Takeover Request (TOR), but they do not need to monitor continuously while automation is active."
+    },
+    {
+      "question": "[QUESTION 2] Which of the following is within the typical Operational Design Domain (ODD) of Level 3 systems?",
+      "options": {
+        "A": "Urban intersection at rush hour",
+        "B": "Highway driving at low speed in clear weather",
+        "C": "Snowy mountain roads at night",
+        "D": "School zone with pedestrians"
+      },
+      "selected": "A",
+      "correct": "B",
+      "is_correct": false,
+      "explanation": "Level 3 systems are typically limited to structured environments like highways under specific conditions."
+    },
+    {
+      "question": "[QUESTION 3] What is the primary risk of over-trusting a Level 3 system?",
+      "options": {
+        "A": "The driver uses too much fuel",
+        "B": "The driver becomes complacent and may not respond to TOR in time",
+        "C": "The system wears out faster",
+        "D": "The driver gets bored and disengages the system"
+      },
+      "selected": "A",
+      "correct": "B",
+      "is_correct": false,
+      "explanation": "Automation complacency leads to reduced readiness, which is dangerous when a TOR occurs and quick response is needed."
+    },
+    {
+      "question": "[QUESTION 4] When a Level 3 system issues a Takeover Request (TOR), what should the driver do?",
+      "options": {
+        "A": "Ignore it if the road looks clear",
+        "B": "Wait for a second alert before acting",
+        "C": "Promptly take control of the vehicle",
+        "D": "Pull over immediately regardless of traffic"
+      },
+      "selected": "A",
+      "correct": "C",
+      "is_correct": false,
+      "explanation": "The driver must respond promptly to TOR. Ignoring or delaying the response can result in the system reaching its limits without human oversight."
+    }
+  ],
+  "feedback": "\n[FILL IN — Structured feedback for Knowledge Group A]\n\nWrite a feedback paragraph appropriate for Foundation-level participants.\nIt should:\n- Acknowledge their effort in completing the training\n- Reinforce the key concepts: Level 3 limits, TOR readiness, appropriate trust\n- Use simple, encouraging language\n- Not reference individual quiz answers (this is the same for everyone in Group A)\n\nExample structure:\n\"Thank you for completing the Level 3 Automation Training. The most important\ntakeaways from today's session are [key points]. Remember that [key reminder].\nAs you encounter automated vehicles, [practical advice]. Well done for taking\nthe time to build your understanding of this important technology.\"\n"
+}

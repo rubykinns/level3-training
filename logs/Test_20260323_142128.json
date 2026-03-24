@@ -1,0 +1,52 @@
+{
+  "participant_id": "Test",
+  "group": "A",
+  "age": 30,
+  "driving_years": 10,
+  "session_start": "2026-03-23T14:15:57.552957",
+  "session_end": "2026-03-23T14:21:28.950002",
+  "modules": [
+    {
+      "module": "Module 1: What is Level 3 Automation?",
+      "chat_turns": 1,
+      "quiz_score": "1/1",
+      "quiz_answers": [
+        {
+          "question": "Which of the following best describes the driver's role in Level 3 automation?",
+          "options": {
+            "A": "No role — the car does everything",
+            "B": "Monitor continuously and be ready to take over when requested",
+            "C": "Manually steer at all times",
+            "D": "Only control acceleration"
+          },
+          "selected": "B",
+          "correct": "B",
+          "is_correct": true,
+          "explanation": "In Level 3, the driver must be ready to respond to a takeover request from the system."
+        }
+      ],
+      "ai_feedback": "Excellent work on completing Module 1 with a perfect score! With your 10 years of driving experience, you've got a solid foundation to understand how Level 3 automation works, and it's clear you grasped the key concepts right away. Your familiarity with how vehicles respond on the road gives you a real advantage in appreciating what automation can and can't do—like understanding that even though the system handles driving tasks, you're still the safety backup. Since you're already comfortable behind the wheel, you're in a great position to learn when and how to take back control, which is the most important skill for Level 3 drivers. Keep building on this momentum as we move forward—you're off to a fantastic start!"
+    },
+    {
+      "module": "Module 2: Takeover Requests (TOR)",
+      "chat_turns": 0,
+      "quiz_score": "1/1",
+      "quiz_answers": [
+        {
+          "question": "[Module 2 Quiz Question — replace me]",
+          "options": {
+            "A": "...",
+            "B": "...",
+            "C": "...",
+            "D": "..."
+          },
+          "selected": "A",
+          "correct": "A",
+          "is_correct": true,
+          "explanation": "Your explanation here."
+        }
+      ],
+      "ai_feedback": "Excellent work on completing Module 2 with a perfect score! With ten years of driving experience, you clearly understand how important it is to stay alert and responsive—and that same attentiveness is exactly what Level 3 automation requires when a takeover request happens. You've grasped that a TOR means the system is asking you to take back control, and you know this can happen in situations the car can't handle on its own, which shows you're thinking about real-world driving responsibly. Your strong foundation in traditional driving is actually a real advantage here, since you already know how to make quick decisions on the road. Keep building on this momentum—you're off to a great start in understanding how to be a safe and engaged driver in the Level 3 world!"
+    }
+  ]
+}
