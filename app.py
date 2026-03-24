@@ -13,12 +13,16 @@
 # =============================================================================
 
 import streamlit as st
-ANTHROPIC_API_KEY = st.secrets.get("ANTHROPIC_API_KEY", "your-api-key-here")
 import json
 import os
-
-
 from datetime import datetime
+
+# Streamlit Cloud Secrets에서 API 키 읽기
+try:
+    import config
+    config.ANTHROPIC_API_KEY = st.secrets["ANTHROPIC_API_KEY"]
+except Exception:
+    pass  # 로컬 환경에서는 config.py의 키 사용
 
 st.set_page_config(
     page_title="L3 Automation Training",
