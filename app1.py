@@ -277,6 +277,8 @@ def save_log():
         "participant_id": pid,
         "training_group": st.session_state.training_group,
         "knowledge_group": st.session_state.knowledge_group,
+        "age": st.session_state.age,
+        "driving_years": st.session_state.driving_years,
         "session_start": st.session_state.session_start,
         "session_end": datetime.now().isoformat(),
         "quiz_answers": st.session_state.quiz_answers,
@@ -306,7 +308,7 @@ if st.session_state.stage == "welcome":
     knowledge_group = "Group A — Foundation"  # default for Group 3
     if "Group 4" in training_group:
         knowledge_group = st.radio(
-            "Knowledge Group",
+            "Knowledge Group (from Qualtrics pre-test)",
             options=["Group A — Foundation", "Group B — Advanced"],
     )
  
@@ -515,12 +517,54 @@ elif st.session_state.stage == "quiz":
     if q_pos >= total_qs:
         results = st.session_state.quiz_answers
         correct_count = sum(1 for r in results if r["is_correct"])
-        st.markdown("### ✅ Quiz Complete!")
+        st.markdown(f"### ✅ Quiz Complete!")
         st.metric("Final Score", f"{correct_count} / {total_qs}")
         st.markdown("<br>", unsafe_allow_html=True)
-        if st.button("Finish Training →", type="primary", use_container_width=True):
-            save_log()
-            st.session_state.stage = "done"
+        if st.button("See Full Feedback →", type="primary", use_container_width=True):
+ 
+            if tg == "3":
+                feedback = STRUCTURED_FEEDBACK_GROUP_A if kg == "A" else STRUCTURED_FEEDBACK_GROUP_B
+            else:
+                wrong_qs = [r for r in results if not r["is_correct"]]
+                wrong_summary = "\n".join(
+                    f"- Q: {r['question']}\n"
+                    f"  Selected: {r['selected']} ({r['options'].get(r['selected'], '')})\n"
+                    f"  Correct: {r['correct']} ({r['options'].get(r['correct'], '')})\n"
+                    f"  Explanation: {r['explanation']}"
+                    for r in wrong_qs
+                ) if wrong_qs else "All answers were correct."
+ 
+                if kg == "A":
+                    feedback_prompt = (
+                        f"{participant_context()}\n\n"
+                        f"The participant scored {correct_count}/{total_qs} on the post-training quiz "
+                        f"about Level 3 automation. They are in Knowledge Group A (Low prior knowledge — High Adaptation Mode).\n\n"
+                        f"Incorrect answers:\n{wrong_summary}\n\n"
+                        f"Write an overall summary feedback for Knowledge Group A:\n\n"
+                        f"1. MORE REMEDIATION: Re-explain each wrong concept thoroughly in at least two ways.\n"
+                        f"2. EXPLICIT FEEDBACK: Explain why each wrong answer was incorrect and the real driving risk.\n"
+                        f"3. STRONG GUIDANCE: Use directive language: 'You should...', 'Always remember...'.\n"
+                        f"4. ENCOURAGING: End with warm encouragement and one key action item.\n"
+                        f"Use simple, everyday language throughout."
+                    )
+                else:
+                    feedback_prompt = (
+                        f"{participant_context()}\n\n"
+                        f"The participant scored {correct_count}/{total_qs} on the post-training quiz "
+                        f"about Level 3 automation. They are in Knowledge Group B (High prior knowledge — Light Adaptation Mode).\n\n"
+                        f"Incorrect answers:\n{wrong_summary}\n\n"
+                        f"Write an overall summary feedback for Knowledge Group B:\n\n"
+                        f"1. CONCISE: 2-3 sentences per wrong answer. State the key distinction only.\n"
+                        f"2. AUTONOMY: Use reasoning prompts: 'Consider why...', 'The distinction here is...'.\n"
+                        f"3. TECHNICAL: Use precise terminology.\n"
+                        f"End with a single forward-looking observation."
+                    )
+ 
+                with st.spinner("Generating your overall feedback..."):
+                    feedback = call_claude(CHATBOT_SYSTEM_PROMPT, [{"role": "user", "content": feedback_prompt}])
+ 
+            st.session_state.feedback_text = feedback
+            st.session_state.stage = "feedback"
             st.rerun()
  
     # ── Show question ──────────────────────────────────────────────────────
@@ -555,11 +599,58 @@ elif st.session_state.stage == "quiz":
             st.session_state.quiz_answers.append(result)
             st.session_state.current_answer = result
  
-            # Per-question feedback: use fixed text from config.py (no API call)
-            # Add "feedback_group_a" and "feedback_group_b" keys to each question in QUIZ_QUESTIONS
+            # Generate per-question feedback (Group 4 only; Group 3 gets simple correct/wrong)
             if tg == "4":
-                feedback_key = "feedback_group_a" if kg == "A" else "feedback_group_b"
-                per_q_feedback = q.get(feedback_key, q.get("explanation", ""))
+                if is_correct:
+                    if kg == "A":
+                        per_q_prompt = (
+                            f"{participant_context()}\n\n"
+                            f"The participant answered this quiz question CORRECTLY:\n"
+                            f"Q: {q['q']}\n"
+                            f"Their answer: {choice} — {q['options'][choice]}\n\n"
+                            f"Give a short, warm confirmation (2-3 sentences) for Knowledge Group A. "
+                            f"Reinforce WHY this answer is correct using simple language. "
+                            f"Use encouraging tone: 'Great job!', 'That's exactly right!'."
+                        )
+                    else:
+                        per_q_prompt = (
+                            f"{participant_context()}\n\n"
+                            f"The participant answered this quiz question CORRECTLY:\n"
+                            f"Q: {q['q']}\n"
+                            f"Their answer: {choice} — {q['options'][choice]}\n\n"
+                            f"Give a brief, precise confirmation (1-2 sentences) for Knowledge Group B. "
+                            f"State what the answer correctly demonstrates. Keep it concise and technical."
+                        )
+                else:
+                    if kg == "A":
+                        per_q_prompt = (
+                            f"{participant_context()}\n\n"
+                            f"The participant answered this quiz question INCORRECTLY:\n"
+                            f"Q: {q['q']}\n"
+                            f"Their answer: {choice} — {q['options'][choice]}\n"
+                            f"Correct answer: {q['answer']} — {q['options'][q['answer']]}\n"
+                            f"Explanation: {q.get('explanation', '')}\n\n"
+                            f"Write immediate feedback for Knowledge Group A (2-4 sentences):\n"
+                            f"1. Gently acknowledge the wrong answer\n"
+                            f"2. Explain clearly why the correct answer is right using a simple analogy\n"
+                            f"3. State the real driving risk of this misconception\n"
+                            f"4. End with directive guidance: 'You should always remember...'\n"
+                            f"Use warm, simple language."
+                        )
+                    else:
+                        per_q_prompt = (
+                            f"{participant_context()}\n\n"
+                            f"The participant answered this quiz question INCORRECTLY:\n"
+                            f"Q: {q['q']}\n"
+                            f"Their answer: {choice} — {q['options'][choice]}\n"
+                            f"Correct answer: {q['answer']} — {q['options'][q['answer']]}\n"
+                            f"Explanation: {q.get('explanation', '')}\n\n"
+                            f"Write immediate feedback for Knowledge Group B (2-3 sentences):\n"
+                            f"1. State the key distinction between wrong and correct answer precisely\n"
+                            f"No lengthy explanation. Technical and concise."
+                        )
+                with st.spinner(""):
+                    per_q_feedback = call_claude(CHATBOT_SYSTEM_PROMPT, [{"role": "user", "content": per_q_prompt}])
                 st.session_state.current_answer["per_q_feedback"] = per_q_feedback
  
             st.session_state.quiz_step = "feedback"
@@ -627,7 +718,55 @@ elif st.session_state.stage == "quiz":
  
  
 # =============================================================================
-# STAGE: FEEDBACK removed — quiz goes directly to done
+# STAGE: FEEDBACK
+# =============================================================================
+elif st.session_state.stage == "feedback":
+    tg = st.session_state.training_group
+    kg = st.session_state.knowledge_group
+    results = st.session_state.quiz_answers
+    correct_count = sum(1 for r in results if r["is_correct"])
+ 
+    st.markdown(f'<div class="stage-label">Feedback &nbsp;·&nbsp; Training Group {tg} &nbsp;·&nbsp; Knowledge Group {kg}</div>', unsafe_allow_html=True)
+    st.progress(1.0)
+    st.markdown("### 🎯 Your Feedback")
+    st.markdown("---")
+ 
+    # Score
+    col1, col2, col3 = st.columns(3)
+    col1.metric("Quiz Score", f"{correct_count} / {len(results)}")
+    col2.metric("Training Group", f"Group {tg}")
+    col3.metric("Knowledge Group", f"Group {kg}")
+ 
+    st.markdown("<br>", unsafe_allow_html=True)
+ 
+    # Feedback bubble
+    feedback_class = "feedback-structured" if tg == "3" else "feedback-personalized"
+    label = "📋 Structured Feedback" if tg == "3" else "✨ Personalized Feedback"
+    st.markdown(f"**{label}**")
+    st.markdown(f"""
+<div class="bubble-ai">
+  <div class="avatar">🤖</div>
+  <div class="bubble-ai-text {feedback_class}">{st.session_state.feedback_text}</div>
+</div>
+""", unsafe_allow_html=True)
+ 
+    st.markdown("<br>", unsafe_allow_html=True)
+ 
+    # Answer review
+    with st.expander("📖 Review all answers"):
+        for r in results:
+            icon = "✅" if r["is_correct"] else "❌"
+            st.markdown(f"{icon} **{r['question']}**")
+            if not r["is_correct"]:
+                st.markdown(f"&nbsp;&nbsp;&nbsp;Your answer: `{r['selected']}` &nbsp;|&nbsp; Correct: `{r['correct']}`")
+                if r["explanation"]:
+                    st.markdown(f"&nbsp;&nbsp;&nbsp;💡 {r['explanation']}")
+            st.markdown("")
+ 
+    if st.button("Finish →", type="primary", use_container_width=True):
+        save_log()
+        st.session_state.stage = "done"
+        st.rerun()
  
  
 # =============================================================================

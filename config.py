@@ -9,7 +9,7 @@
 # CHATBOT_SYSTEM_PROMPT : AI instructor behavior for Group 4
 # =============================================================================
 
-ANTHROPIC_API_KEY = "your-api-key-here"
+ANTHROPIC_API_KEY = "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"
 MODEL = "claude-haiku-4-5-20251001"
 import base64
 
@@ -47,65 +47,64 @@ SCRIPTED_TOPICS = [
         "steps": [
             {
                 "message": (
-                    "Welcome to your <b>Level 3 Automation Driver Training!<b> 🚗\n\n"
+                    "Welcome to your <b>Level 3 Automation Driver Training!</b> 🚗 <br><br>"
                     "Let's start with a quick overview of SAE automation levels. "
-                    "Take a look at the diagram below — it shows all six levels defined by SAE International J3016:\n\n"
-                    "**Level 0 — No Automation**\n"
-                    "Full and constant responsibility for all dynamic driving tasks. No system support. The driver is the human operator.\n\n"
-                    "**Level 1 — Driver Assistance**\n"
+                    "Take a look at the diagram below — it shows all six levels defined by SAE International J3016:<br><br>"
+                    "<b>Level 0 — No Automation: </b>"
+                    "Full and constant responsibility for all dynamic driving tasks. No system support. The driver is the human operator. <br><br>"
+                    "<b>Level 1 — Driver Assistance: </b>\n"
                     "The vehicle features a single automated system (e.g. speed or steering control). "
-                    "Driver must monitor and adjust continuously. Supervised control.\n\n"
-                    "**Level 2 — Partial Automation**\n"
+                    "Driver must monitor and adjust continuously. Supervised control.<br><br>"
+                    "<b>Level 2 — Partial Automation: </b>\n"
                     "The vehicle can perform steering and acceleration. "
-                    "Driver must monitor continuously and take control at any time. Combined monitoring.\n\n"
-                    "**Level 3 — Conditional Automation** (**Today's focus**)\n"
+                    "Driver must monitor continuously and take control at any time. Combined monitoring.<br><br>"
+                    "<b>Level 3 — Conditional Automation: </b> (<b>Today's focus</b>)\n"
                     "The vehicle can perform most driving tasks under specific conditions. "
-                    "Driver is NOT responsible for monitoring, but MUST be ready to take over on request. Fallback ready.\n\n"
-                    "**Level 4 — High Automation**\n"
+                    "Driver is NOT responsible for monitoring, but MUST be ready to take over on request. Fallback ready.<br><br>"
+                    "<b>Level 4 — High Automation: </b>\n"
                     "The vehicle handles all driving tasks under most conditions autonomously. "
-                    "Minimal intervention might be necessary. Limited use.\n\n"
-                    "**Level 5 — Full Automation**\n"
+                    "Minimal intervention might be necessary. Limited use.<br><br>"
+                    "<b>Level 5 — Full Automation:</b>\n"
                     "The vehicle handles all driving tasks under all conditions autonomously. "
-                    "No driver responsibility for any aspect of the dynamic driving task. No driver required.\n\n"
+                    "No driver responsibility for any aspect of the dynamic driving task. No driver required.<br><br>"
                     "Does this overview of SAE levels make sense to you? Click the image to enlarge."
                 ),
                 "image": "Sae levels.png",
                 "yes_followup": "Great! Let's look at what Level 3 specifically means for you as a driver.",
                 "no_followup": (
-                    "No problem! Here's the key difference to focus on:\n\n"
-                    "At Level 2, you must always watch the road — even if the car is steering.\n"
-                    "At Level 3, the system monitors the environment for you — but only in certain conditions, "
-                    "and you must be ready to step in when it asks.\n\n"
-                    "Think of it as: Level 2 = co-pilot who watches, Level 3 = pilot who occasionally needs backup.\n\n"
+                    "No problem! Here's the key difference to focus on: <br><br>"
+                    "At <b>Level 2</b>, The human driver is still the primary driver at all times. The system can assist with steering and speed control, but the driver must continuously monitor the environment and be ready to intervene immediately.<br><br> → <i>You are driving, and the system is assisting you</i>. <br><br>"
+                    "At <b>Level 3</b>, The automated system becomes the primary driver under specific conditions. The human driver does not need to continuously monitor the environment, but must be ready to take over when the system requests it.<br><br> → <i>The system is driving, and you engage only when needed</i>. <br><br>"
+                    "Think of it as: <b>Level 2</b> = human driver <b>needs</b> to continuously monitor the surroundings, <b>Level 3</b> = human driver <b>doesn't need</b> to continuously monitor the surroundings, unless necessary.<br><br>"
                     "Does that help clarify the difference?"
                 ),
             },
             {
                 "message": (
                     "So what exactly is <b>Level 3 — Conditional Automation</b>?<br><br>"
-                    "🤖 <b>The system takes the wheel:</b> <br><br>"
+                    "🤖 <b>The system takes the control:</b> <br><br>"
                     "The vehicle <b>steers, accelerates, and brakes</b> on its own. "
-                    "The system monitors the environment — not you.<br><br>"
+                    "The system monitors the environment.<br><br>"
                     "⚠️ <b>Conditional, not full automation:</b> <br><br>"
                     "It only works within a <b>specific Operational Design Domain (ODD)</b> — "
                     "defined road types, speed ranges, and weather conditions set by the manufacturer.<br><br>"
                     "🔄 <b>Takeover is your responsibility</b>:<br><br>"
-                    "When the system <b>reaches its limits</b>, it issues a **Takeover Request (ToR)**. "
-                    "You <b>MUST</b>respond promptly.<br><br>"
+                    "When the system <b>reaches its limits</b>, it issues a <b>Takeover Request (ToR)</b>. "
+                    "You <b>MUST</b> respond promptly.<br><br>"
                     "Does this definition of Level 3 make sense to you?"
                 ),
                 "yes_followup": None,
                 "no_followup": (
-                    "Let's simplify to three rules:\n\n"
-                    "1. The car drives — but only under specific conditions.\n"
-                    "2. You don't need to stare at the road, but stay available.\n"
-                    "3. When the car asks for you → take over immediately.\n\n"
+                    "Let's simplify to three rules:<br><br>"
+                    "1. The automated driving systems drives the car automatically — <b>but only under specific conditions</b>.<br><br>"
+                    "2. You don't need to monitor the road, but need to stay available to take over.<br><br>"
+                    "3. When the systems asks for manual takeover → <b>Take over immediately</b>.<br><br>"
                     "That's the core of Level 3. Ready to continue?"
                 ),
             },
             {
                 "message": (
-                    "<b>A key distinction: Level 2 vs. Level 3.<b>\n\n"
+                    "<b>A key distinction: Level 2 vs. Level 3.</b><br><br>"
                     "<table style='width:100%; border-collapse:collapse; font-size:14px; margin:10px 0;'>"
                     "<thead>"
                     "<tr style='background:#1d4ed8; color:white;'>"
@@ -131,7 +130,7 @@ SCRIPTED_TOPICS = [
                     "<td style='padding:10px; text-align:center; color:#1d4ed8; font-weight:600;'>System → transitions to Driver</td>"
                     "</tr>"
                     "<tr style='background:#ffffff;'>"
-                    "<td style='padding:10px; font-weight:600;'>Takeover Request (TOR)?</td>"
+                    "<td style='padding:10px; font-weight:600;'>Takeover Request (ToR)?</td>"
                     "<td style='padding:10px; text-align:center;'>Not applicable</td>"
                     "<td style='padding:10px; text-align:center; color:#1d4ed8; font-weight:600;'>Yes — must respond</td>"
                     "</tr>"
@@ -147,43 +146,42 @@ SCRIPTED_TOPICS = [
                 
                 "yes_followup": "Good. Now let's talk about <b>your responsibilities<b> as the driver during Level 3.",
                 "no_followup": (
-                    "Here's the simplest way to remember it:\n\n"
-                    "**Level 2** = Hands-off, but EYES ON the road at all times.\n\n"
-                    "**Level 3** = Eyes can be off the road, but BE READY to take over.\n\n"
+                    "Here's the simplest way to remember it:<br><br>"
+                    "<b>Level 2</b> = Hands-off, but EYES ON the road at all times.<br><br>"
+                    "<b>Level 3</b> = Eyes can be off the road, but BE READY to take over.<br><br>"
                     "That one difference is what makes Level 3 a significant step forward — "
                     "and why understanding your responsibilities matters so much. Clear now?"
                 ),
             },
             {
                 "message": (
-                    "Here's what you <b>ARE</b> responsible for during Level 3 automation:<br><br>"
-                    "💺 <b>Stay in the driver's seat at all times</b> — You must remain in the driver's seat and within reach of the steering wheel at all times.\n\n"
-                    "🚨 **Be physically able to resume control and stay alert** — Do not drive tired, impaired, or medicated.\n\n"
-                    "🖐️ **Hands and feet ready when alerted** — When a Takeover Request is issued, place hands on the wheel and feet near the pedals.\n\n"
-                    "⚡ **Respond to every Takeover Request** — You must take over when the system alerts you for either planned or urgent. Never dismiss or delay. \n\n"
-                    "📊 **Monitor the dashboard every 30–60 seconds** — "
-                    "Green =  active, Yellow = prepare, Red = act now.\n\n"
+                    "Here's what you <span style='color:#1d4ed8; font-weight:700;'>ARE</span> responsible for during Level 3 automation:<br><br>"
+                    "💺 <b>Stay in the driver's seat at all times</b> — You must remain in the driver's seat and within reach of the steering wheel at all times.<br><br>"
+                    "🚨 <b>Be physically able to resume control and stay alert</b> — Do not drive tired, impaired, or medicated.<br><br>"
+                    "🖐️ <b>Hands and feet ready when alerted</b> — When a Takeover Request is issued, place hands on the wheel and feet near the pedals.<br><br>"
+                    "⚡ <b>Respond to every Takeover Request</b> — You must take over when the system alerts you for either planned or urgent. Never dismiss or delay.<br><br>"
+                    "📊 <b>Monitor the dashboard every 30–60 seconds</b> <br><br>"
                     "Does this list of driver responsibilities make sense?"
                 ),
                 "yes_followup": "Good. Now let's look at what you should <b>NOT</b> do during Level 3.",
                 "no_followup": (
-                    "Think of it this way — Level 3 reduces your workload, but does <b>NOT</b> eliminate your role.\n\n"
-                    "You still need to:\n\n"
-                    "• Stay in the seat\n\n"
-                    "• Stay awake and capable\n\n"
-                    "• Respond to alerts\n\n"
-                    "• Glance at the dashboard occasionally\n\n"
+                    "Think of it this way — Level 3 reduces your workload, but does <b>NOT</b> eliminate your role.<br><br>"
+                    "You still need to:<br><br>"
+                    "• Stay in the seat<br><br>"
+                    "• Stay awake and capable<br><br>"
+                    "• Respond to alerts<br><br>"
+                    "• Glance at the dashboard occasionally<br><br>"
                     "The system drives. You remain the responsible backup. Does that make sense?"
                 ),
             },
             {
                 "message": (
-                    "And here's what you should <b>NOT</b> do while Level 3 automation is active:<br><br>"
+                    "And here's what you should <span style='color:#ef4444; font-weight:700;'>NOT</span> do while Level 3 automation is active:<br><br>"
                     "😴 <b>Sleep or become fully unresponsive</b> — Drowsy drivers need more response time to react compared to drivers who are alert.<br><br>"
-                    "💺 <b>Leave the driver's seat</b> — You must remain within reach of the steering wheel at all times during automation..\n\n"
-                    "❗️ <b>Ignore or dismiss a TOR alert</b> — You must takeover if you receive a ToR request.\n\n"
-                    "🍺 <b>Drive under the influence</b> — Alcohol, drugs, or impairing medication are prohibited regardless of automation level.\n\n"
-                    "⏳ <b>Engage in tasks you can't stop immediately</b> — Only do things you can interrupt within seconds.\n\n"
+                    "💺 <b>Leave the driver's seat</b> — You must remain within reach of the steering wheel at all times during automation..<br><br>"
+                    "❗️ <b>Ignore or dismiss a ToR alert</b> — You must takeover if you receive a ToR request.<br><br>"
+                    "🍺 <b>Drive under the influence</b> — Alcohol, drugs, or impairing medication are prohibited regardless of automation level.<br><br>"
+                    "⏳ <b>Engage in tasks you can't stop immediately</b> — Only do things you can interrupt within seconds.<br><br>"
                     "Does this list of prohibited behaviors make sense?"
                 ),
                 "yes_followup": (
@@ -192,10 +190,10 @@ SCRIPTED_TOPICS = [
                     "the specific conditions under which Level 3 can and cannot operate."
                 ),
                 "no_followup": (
-                    "The key rule is: only do things you can <b>STOP</b> within a few seconds.\n\n"
-                    "<b>Phone call?</b> OK — you can put it down.\n\n"
-                    "<b>Watching a movie?</b> Not OK — you'll be too absorbed.\n\n"
-                    "<b>Napping?</b> Definitely not — you won't hear the ToR alert.\n\n"
+                    "The key rule is: only do things you can <b>STOP</b> within a few seconds.<br><br>"
+                    "<b>Phone call?</b> OK — you can put it down.<br><br>"
+                    "<b>Watching a movie?</b> Not OK — you'll be too absorbed.<br><br>"
+                    "<b>Napping?</b> Definitely not — you won't hear the ToR alert.<br><br>"
                     "Level 3 gives you a break from driving, not from being a driver. Ready to continue?"
                 ),
             },
@@ -204,15 +202,15 @@ SCRIPTED_TOPICS = [
 
     # ── MODULE 2: Operational Design Domain ──────────────────────────────────
     {
-        "title": "<b>Module 2: Operational Design Domains (ODD)<b> <br><br>",
+        "title": "Module 2: Operational Design Domains (ODD) <br><br>",
         "steps": [
             {
                 "message": (
-                    "Module 2: <b>Operational Design Domains (ODD)</b><br><br>"
-                    "The ODD defines the <b>specific conditions</b> under which a Level 3 system is designed to function safely.<br><br>"
+                    "<b>Module 2: Operational Design Domains (ODD)</b><br><br>"
+                    "The <b>ODD</b> defines the <b>specific environmental, roadway, and traffic conditions</b> under which a Level 3 automated driving system is designed to perform the driving task safely. <br><br>"
                     "<ul style='margin:8px 0; padding-left:20px;'>"
                     "🗂️ <b>System Boundary</b> <br><br>"
-                    "Important points:\n\n"
+                    "<span style='color:#ef4444; font-weight:700;'>Important points:</span>"
                     "<li>The ODD is defined by the manufacturer — not you.</li>"
                     "<li>Each vehicle model has its own documented ODD.</li>"
                     "</ul>"
@@ -223,40 +221,40 @@ SCRIPTED_TOPICS = [
                     "<li>Outside these conditions, the system may not operate reliably and will request driver takeover.</li>"
                     "<li>Ignoring this boundary is unsafe.</li>"
                     "</ul>"
-                    "💡 ODD defines the system's <b>boundary</b> — not its capability. Safe use starts with understanding this distinction.<br><br>"
+                    "💡 ODD does not mean the system is perfect within those conditions. Real-world conditions can still vary. Safe use starts with understanding this distinction.<br><br>"
                     "<b>Does the concept of ODD make sense?</b>"
                 ),
 
                 "yes_followup": "Good. Let's look at the four ODD condition categories.",
                 "no_followup": (
-                    "Think of ODD like the operating manual for an appliance:<br><br>"
+                    "Think of <b>ODD</b> like the operating manual for an appliance:<br><br>"
                     "A washing machine is designed for clothes — not bricks. "
-                    "It might handle one brick, but it's not built for it and could break.\n\n"
+                    "It might handle one brick, but it's not built for it and could break.<br><br>"
                     "Similarly, Level 3 is designed for specific road conditions. "
-                    "Outside those, it can't guarantee safe operation.\n\n"
+                    "Outside those, it can't guarantee safe operation.<br><br>"
                     "The manufacturer defines exactly what those conditions are. Does that explanation help?"
                 ),
             },
             {
                 "message": (
-                    "ODD is defined by <b>four condition</b> categories — ALL must be met simultaneously:\n\n"
-                    "🛣️ <b>01. Road Type & Geometry</b> \n\n"
-                    "🚗 <b>02. Traffic Conditions</b> \n\n"
-                    "🌤️ <b>03. Environmental Conditions</b> \n\n"
+                    "ODD is defined by <b>four condition</b> categories — ALL must be met simultaneously:<br><br>"
+                    "🛣️ <b>01. Road Type & Geometry</b> <br><br>"
+                    "🚗 <b>02. Traffic Conditions</b> <br><br>"
+                    "🌤️ <b>03. Environmental Conditions</b> <br><br>"
                     "🗺️ <b>04. Geographic Area & Map</b> <br><br>"
                     
-                    "⚠️ **All Four conditions must be satisfied simultaneously.** \n\n **Failure of even one category** can cause the system to issue a Takeover Request — even if all other conditions are fine.\n\n"
-                    "Does this **four condition categories** make sense?"
+                    "⚠️ <b>All Four conditions must be satisfied simultaneously.</b> <br><br> <b>Failure of even one category</b> can cause the system to issue a Takeover Request — even if all other conditions are fine.<br><br>"
+                    "Does this <b>four condition categories</b> make sense?"
                 ),
                 "yes_followup": "Good. Let's go through each category in more detail.",
                 "no_followup": (
-                    "Think of it like a checklist before activation:\n\n"
-                    "✅ Road type OK?\n\n"
-                    "✅ Traffic OK?\n\n"
-                    "✅ Weather OK?\n\n"
-                    "✅ GPS & map OK?\n\n"
-                    "If even one item on that checklist fails, the system exits automation. "
-                    "All four must be green at the same time. Does that make it clearer?"
+                    "Think of it like a checklist before activation:<br><br>"
+                    "✅ Road type OK?<br><br>"
+                    "✅ Traffic OK?<br><br>"
+                    "✅ Weather OK?<br><br>"
+                    "✅ GPS & map OK?<br><br>"
+                    "If even one item on that checklist fails, the system may exit automation. "
+                    "All four conditions should be met at the same time. Does that make it clearer?"
                 ),
             },
     
@@ -284,7 +282,7 @@ SCRIPTED_TOPICS = [
                     "<td style='padding:10px;'><ul style='margin:0; padding-left:16px;'>"
                     "<li>Urban streets</li>"
                     "<li>Roundabouts &amp; school zones</li>"
-                    "<li>Construction-altered roads</li>"
+                    "<li>Construction zones</li>"
                     "<li>Unmarked rural roads</li>"
                     "</ul></td>"
                     "<tr style='background:#ffffff;'>"
@@ -296,22 +294,22 @@ SCRIPTED_TOPICS = [
                     "</ul></td>"
                     "<td style='padding:10px;'><ul style='margin:0; padding-left:16px;'>"
                     "<li>Frequent cut-ins</li>"
-                    "<li>Dense or chaotic traffic</li>"
+                    "<li>Dense or heavy traffic</li>"
                     "<li>Cyclists &amp; pedestrians</li>"
                     "<li>Emergency vehicles nearby</li>"
                     "</ul></td>"
                     "</tr>"
                     "</tbody>"
                     "</table>"
-                    "<br>💡 <b>Road type</b> is the most common reason Level 3 disengages — always check your route before activating.<br>"
+                    "<br>💡 <b>Roadway condition</b> is the most common reason Level 3 disengages — always check your route before activating.<br>"
                     "💡 Even within ODD, high <b>traffic complexity</b> can trigger an urgent TOR — stay alert in dense traffic.<br><br>"
                     "Is this clear so far?"
                 ),
                 "yes_followup": "Good. Let's look at <b>environmental and geographic conditions.</b>",
                 "no_followup": (
-                    "Here's the simple version:\n\n"
-                    "Road type → Highways YES, city streets NO.\n"
-                    "Traffic → Predictable flow YES, chaotic or unpredictable NO.\n\n"
+                    "Here's the simple version:<br><br>"
+                    "Roadway → Highways YES, city streets NO.<br><br>"
+                    "Traffic → Predictable flow YES, heavy or unpredictable NO.<br><br>"
                     "If you're on a highway with steady traffic, you're likely within ODD for these two categories. "
                     "Ready to continue with the other two?"
                 ),
@@ -347,7 +345,7 @@ SCRIPTED_TOPICS = [
                     "<td style='padding:10px; font-weight:600;'>🗺️ Geographical</td>"
                     "<td style='padding:10px;'><ul style='margin:0; padding-left:16px;'>"
                     "<li>Pre-mapped road segments</li>"
-                    "<li>Centimeter-level GPS available</li>"
+                    "<li>High-level GPS available</li>"
                     "<li>Manufacturer-approved regions</li>"
                     "<li>Up-to-date HD map data</li>"
                     "</ul></td>"
@@ -370,9 +368,9 @@ SCRIPTED_TOPICS = [
                     "This is the most critical skill in Level 3 driving."
                 ),
                 "no_followup": (
-                    "Here's the short version for <b>environmental and geographic conditions</b>:\n\n"
-                    "Environment → Good visibility and weather YES, fog/snow/ice NO.\n"
-                    "Geography → Mapped highways with GPS YES, tunnels/unmapped roads/unsupported regions NO.\n\n"
+                    "Here's the short version for <b>environmental and geographic conditions</b>:<br><br>"
+                    "Environment → Good visibility and weather YES, fog/snow/ice NO.<br><br>"
+                    "Geography → Mapped highways with GPS YES, tunnels/unmapped roads/unsupported regions NO.<br><br>"
                     "When in doubt about any of these conditions — don't activate Level 3. "
                     "Manual control is always the safe choice. Does that make sense?"
                 ),
@@ -386,9 +384,9 @@ SCRIPTED_TOPICS = [
         "steps": [
             {
                 "message": (
-                    "<b>Module 3: Takeover Requests — The Most Critical Skill </b>🚨<br><br>"
+                    "<b>Module 3: Takeover Requests (ToR)</b>🚨<br><br>"
                     "<b>A Takeover Request (ToR)</b> is the system's signal: "
-                    "\"<b>I cannot continue safely — please take manual control now.</b>\"\n\n"
+                    "\"<b>I cannot continue safely — please take manual control now.</b>\"<br><br>"
                     "<b>ToR alerts come in three forms</b> — often simultaneously:<br><br>"
                     "<div style='display:flex; gap:10px; margin:8px 0;'>"
 
@@ -412,20 +410,19 @@ SCRIPTED_TOPICS = [
 
                     "</div><br>"
                     "The alerts get more intense over time — the system is designed to get your attention no matter what.\n\n"
-                    "Have you ever seen or experienced a driver alert system in a vehicle before?"
+                    "Does this concept makes you clear?"
                 ),
-                "yes_followup": "Good — this will feel familiar then. The stakes with TOR are just higher.",
+                "yes_followup": "Good. Lets move on to how to correctly takeover in sequece.",
                 "no_followup": (
-                    "Think of a TOR like a fire alarm:\n\n"
-                    "It doesn't necessarily mean disaster — it means act now.\n"
-                    "The alarm gets louder if you don't respond, just like a fire alarm escalates.\n\n"
+                    "Think of a TㅐR like a system handover request: The system is telling you, 'I’ve reached my limit — you need to take control now.'<br><br>"
+                    "It does not always mean there is immediate danger, but it means the system can no longer reliably handle the situation.<br><br>"
                     "Your job is simply to respond promptly and take control. "
                     "We'll walk through exactly how to do that next. Ready?"
                 ),
             },
             {
                 "message": (
-                    "When a TOR is issued, execute these 6 steps in order:\n\n"
+                    "When a TOR is issued, execute these 5 steps in order:\n\n"
                     "<div style='display:flex; flex-direction:column; gap:8px; margin:8px 0;'>"
 
                     "<div style='display:flex; align-items:flex-start; gap:12px; background:#f8f9fb; border:1px solid #e5e7eb; border-radius:10px; padding:12px;'>"
@@ -442,53 +439,47 @@ SCRIPTED_TOPICS = [
 
                     "<div style='display:flex; align-items:flex-start; gap:12px; background:#f8f9fb; border:1px solid #e5e7eb; border-radius:10px; padding:12px;'>"
                     "<div style='background:#1d4ed8; color:white; border-radius:50%; width:28px; height:28px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; flex-shrink:0;'>3</div>"
-                    "<div><div style='font-weight:700; color:#1d4ed8;'>Stabilize Lane</div>"
-                    "<div style='font-size:13px; color:#374151;'>Maintain your lane position smoothly. No sudden steering.</div></div>"
+                    "<div><div style='font-weight:700; color:#1d4ed8;'>Assess Surroundings and Stabilize Lane</div>"
+                    "<div style='font-size:13px; color:#374151;'>Check mirrors, blind spots, and what triggered the ToR. Maintain your lane position smoothly. No sudden steering.</div></div>"
                     "</div>"
 
                     "<div style='display:flex; align-items:flex-start; gap:12px; background:#f8f9fb; border:1px solid #e5e7eb; border-radius:10px; padding:12px;'>"
                     "<div style='background:#1d4ed8; color:white; border-radius:50%; width:28px; height:28px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; flex-shrink:0;'>4</div>"
-                    "<div><div style='font-weight:700; color:#1d4ed8;'>Assess Surroundings</div>"
-                    "<div style='font-size:13px; color:#374151;'>Check mirrors, blind spots, and what triggered the TOR.</div></div>"
-                    "</div>"
-
-                    "<div style='display:flex; align-items:flex-start; gap:12px; background:#f8f9fb; border:1px solid #e5e7eb; border-radius:10px; padding:12px;'>"
-                    "<div style='background:#1d4ed8; color:white; border-radius:50%; width:28px; height:28px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; flex-shrink:0;'>5</div>"
                     "<div><div style='font-weight:700; color:#1d4ed8;'>Apply Brake / Acceleration</div>"
                     "<div style='font-size:13px; color:#374151;'>React to the road situation and adjust speed as needed.</div></div>"
                     "</div>"
 
                     "<div style='display:flex; align-items:flex-start; gap:12px; background:#f8f9fb; border:1px solid #e5e7eb; border-radius:10px; padding:12px;'>"
-                    "<div style='background:#1d4ed8; color:white; border-radius:50%; width:28px; height:28px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; flex-shrink:0;'>6</div>"
+                    "<div style='background:#1d4ed8; color:white; border-radius:50%; width:28px; height:28px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; flex-shrink:0;'>5</div>"
                     "<div><div style='font-weight:700; color:#1d4ed8;'>Confirm Full Manual Control</div>"
                     "<div style='font-size:13px; color:#374151;'>Verify automation is OFF on the HMI. You are now in control.</div></div>"
                     "</div>"
 
                     "</div><br>"
-                    "Does this <b>6-step TOR response process</b> make sense?"
+                    "Does this <b>5-step ToR response process</b> make sense?"
                 ),
-                "yes_followup": "Good. Now let's look at the three different types of TOR.",
+                "yes_followup": "Good. Now let's look at the three different types of ToR.",
                 "no_followup": (
-                    "Let's simplify to the first three steps — the most critical ones:\n\n"
-                    "Step 1: Look at the road.\n\n"
-                    "Step 2: Grab the wheel.\n\n"
-                    "Step 3: Don't swerve — stabilize first.\n\n"
-                    "Steps 4-6 follow naturally once you're in control. "
+                    "Let's simplify to the first three steps — the most critical ones:<br><br>"
+                    "Step 1: Look at the road.<br><br>"
+                    "Step 2: Grab the wheel.<br><br>"
+                    "Step 3: Don't swerve — stabilize first.<br><br>"
+                    "Steps 4-5: follow naturally once you're in control. <br><br> "
                     "The key is: eyes and hands first, assessment second. Clear?"
                 ),
             },
             {
                 "message": (
-                    "There are three types of ToR — each requires a different response speed:\n\n"
+                    "There are two types of ToR — each requires a different response speed:<br><br>"
                     "<div style='display:flex; flex-direction:column; gap:10px; margin:8px 0;'>"
 
                     # Planned TOR - Green
                     "<div style='background:#f0fdf4; border:1px solid #86efac; border-left:4px solid #22c55e; border-radius:10px; padding:14px;'>"
                     "<div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;'>"
-                    "<div style='font-weight:700; color:#15803d; font-size:15px;'>1️⃣ PLANNED ToR</div>"
+                    "<div style='font-weight:700; color:#15803d; font-size:15px;'>1️⃣ PLANNED/Scheduled ToR</div>"
                     "<div style='background:#22c55e; color:white; border-radius:99px; padding:2px 10px; font-size:12px; font-weight:600;'>25–30 sec</div>"
                     "</div>"
-                    "<div style='font-size:13px; color:#374151; margin-bottom:8px;'>System detects an upcoming ODD boundary (e.g., highway exit, construction ahead). Most manageable type.</div>"
+                    "<div style='font-size:13px; color:#374151; margin-bottom:8px;'>System detects an upcoming ODD boundary (e.g., highway exit, construction ahead). Most situations are manageable within certain time.</div>"
                     "<div style='background:#dcfce7; border-radius:6px; padding:8px; font-size:13px; color:#15803d;'>"
                     "✅ Wrap up task → Eyes on road → Hands on wheel → Accept control early"
                     "</div>"
@@ -505,32 +496,20 @@ SCRIPTED_TOPICS = [
                     "✅ Drop everything immediately → Eyes on road → Hands on wheel → Assess and react"
                     "</div>"
                     "</div>"
-
-                    # Failure TOR - Red
-                    "<div style='background:#fef2f2; border:1px solid #fca5a5; border-left:4px solid #ef4444; border-radius:10px; padding:14px;'>"
-                    "<div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;'>"
-                    "<div style='font-weight:700; color:#dc2626; font-size:15px;'>3️⃣ FAILURE ToR</div>"
-                    "<div style='background:#ef4444; color:white; border-radius:99px; padding:2px 10px; font-size:12px; font-weight:600;'>Critical</div>"
-                    "</div>"
-                    "<div style='font-size:13px; color:#374151; margin-bottom:8px;'>Vehicle initiates Minimal Risk Condition (MRC) automatically — slows and stops safely.</div>"
-                    "<div style='background:#fee2e2; border-radius:6px; padding:8px; font-size:13px; color:#dc2626;'>"
-                    "✅ Take control ASAP. If unable — assist MRC. Steer to shoulder when safe."
-                    "</div>"
-                    "</div>"
+ 
 
                     "</div><br>"
-                    "Does understanding the <b>three types of ToR</b> make sense?"
+                    "Does understanding the <b>two types of ToR</b> make sense?"
                 ),
                 "yes_followup": (
-                    "Great! You've completed <b>Module 3</b>. 🎉\n\n"
+                    "Great! You've completed <b>Module 3</b>. 🎉<br><br>"
                     "<b>Module 4</b> covers <b>How the System Works</b> — specifically, the dashboard signals "
                     "that tell you what mode the system is in."
                 ),
                 "no_followup": (
-                    "Here's the key takeaway for each type:\n\n"
-                    "Planned ToR → You have time. Wrap up and take over smoothly.\n"
-                    "Urgent ToR → No time. Drop everything and react immediately.\n"
-                    "Failure ToR → System is stopping the car. Help it if you can.\n\n"
+                    "Here's the key takeaway for each type:<br><br>"
+                    "<b>Planned ToR</b> → You have time. Wrap up and take over smoothly.<br><br>"
+                    "<b>Urgent ToR</b> → No time. Drop everything and react immediately.<br><br>"
                     "The common thread: always take ToR alerts seriously, every single time. Ready to continue?"
                 ),
             },
@@ -546,7 +525,7 @@ SCRIPTED_TOPICS = [
                     
                     "<b>Module 4: How the System Works — Reading Your Dashboard</b> 📊<br><br>"
                     "Your <b>Human-Machine Interface (HMI)</b> is your window into what the system is doing. "
-                    "There are four dashboard states you need to know:<br><br>"
+                    "There are dashboard HMI indicators you need to know:<br><br>"
 
                     "<div style='display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:8px 0;'>"
 
@@ -557,12 +536,6 @@ SCRIPTED_TOPICS = [
                     "<div style='font-size:13px; color:#374151;'>Automation fully engaged. You may engage in permitted non-driving tasks.</div>"
                     "</div>"
 
-                    # YELLOW
-                    "<div style='background:#fefce8; border:2px solid #eab308; border-radius:10px; padding:14px; text-align:center;'>"
-                    f"<img src='data:image/png;base64,{yellow_img}' style='width:100%; border-radius:6px; margin-bottom:8px;'>"
-                    "<div style='font-weight:700; color:#a16207; font-size:15px; margin-bottom:4px;'>🟡 YELLOW — Prepare to Take Over</div>"
-                    "<div style='font-size:13px; color:#374151;'>Approaching ODD boundary. Wrap up tasks and prepare for manual control.</div>"
-                    "</div>"
 
                     # RED
                     "<div style='background:#fef2f2; border:2px solid #ef4444; border-radius:10px; padding:14px; text-align:center;'>"
@@ -571,15 +544,9 @@ SCRIPTED_TOPICS = [
                     "<div style='font-size:13px; color:#374151;'>Drop everything. Hands on wheel. Eyes on road. Act within seconds.</div>"
                     "</div>"
 
-                    # GRAY
-                    "<div style='background:#f9fafb; border:2px solid #9ca3af; border-radius:10px; padding:14px; text-align:center;'>"
-                    f"<img src='data:image/png;base64,{gray_img}' style='width:100%; border-radius:6px; margin-bottom:8px;'>"
-                    "<div style='font-weight:700; color:#4b5563; font-size:15px; margin-bottom:4px;'>⚫ GRAY — System Not Active</div>"
-                    "<div style='font-size:13px; color:#374151;'>Automation unavailable. Drive fully manually.</div>"
-                    "</div>"
 
                     "</div><br>"
-                    "Does the <b>four-color HMI system</b> make sense?"
+                    "Does the <b>color HMI system</b> make sense?"
                     ),
                 "yes_followup": (
                     "Excellent! You've completed <b>Module 4</b>. 🎉<br><br>"
@@ -587,11 +554,10 @@ SCRIPTED_TOPICS = [
                     
                 ),
                 "no_followup": (
-                    "Think of it like a traffic light — but for your automation system:\n\n"
-                    "🟢 Green = Go. System is driving. You're fine.\n\n"
-                    "🟡 Yellow = Caution. Get ready to take over soon.\n"
-                    "🔴 Red = Stop (everything else). Take over RIGHT NOW.\n"
-                    "⚫ Gray = No signal. Drive manually.\n\n"
+                    "Think of it like a traffic light — but for your automation system:<br><br>"
+                    "🟢 Green = Go. System is driving. You're fine.<br><br>"
+                    "🔴 Red = Stop (everything else). Take over RIGHT NOW.<br><br>"
+
                     "Glancing at the HMI every 30–60 seconds keeps you aware of the system's status. Clear?"
                 ),
             
@@ -622,31 +588,31 @@ SCRIPTED_TOPICS = [
 
                     # Trap 2
                     "<div style='background:#eff6ff; border:1px solid #bfdbfe; border-left:4px solid #1d4ed8; border-radius:10px; padding:14px;'>"
-                    "<div style='font-weight:700; color:#1d4ed8; font-size:15px; margin-bottom:6px;'>😶 Trap 2 — Complacency (Out-of-the-Loop)</div>"
+                    "<div style='font-weight:700; color:#1d4ed8; font-size:15px; margin-bottom:6px;'>😶 Trap 2 — Unresponsiveness (Out-of-the-Loop)</div>"
                     "<div style='font-style:italic; color:#1e40af; background:#dbeafe; border-radius:6px; padding:8px; margin-bottom:8px; font-size:13px;'>"
-                    "\"Nothing has gone wrong in weeks, so nothing will today.\""
+                    "\"I’ll respond in a moment — I don’t need to react immediately.\""
                     "</div>"
-                    "<div style='font-size:13px; color:#374151;'>⚠️ <b>Risk:</b> After 60+ minutes of automation, TOR response times can be 2–3x slower than at trip start.</div>"
+                    "<div style='font-size:13px; color:#374151;'>⚠️ <b>Risk:</b>Delayed or no response to a takeover request can lead to insufficient time to stabilize the vehicle and avoid hazards.</div>"
                     "</div>"
 
                     # Trap 3
-                    "<div style='background:#fffbeb; border:1px solid #fcd34d; border-left:4px solid #f59e0b; border-radius:10px; padding:14px;'>"
-                    "<div style='font-weight:700; color:#92400e; font-size:15px; margin-bottom:6px;'>😵 Trap 3 — Mode Confusion</div>"
-                    "<div style='font-style:italic; color:#78350f; background:#fef3c7; border-radius:6px; padding:8px; margin-bottom:8px; font-size:13px;'>"
+                    "<div style='background:#f0fdf4; border:1px solid #fcd34d; border-left:4px solid #22c55e; border-radius:10px; padding:14px;'>"
+                    "<div style='font-weight:700; color:#15803d; font-size:15px; margin-bottom:6px;'>😵 Trap 3 — Mode Confusion</div>"
+                    "<div style='font-style:italic; color:#22c55e; background:#dcfce7; border-radius:6px; padding:8px; margin-bottom:8px; font-size:13px;'>"
                     "\"Wait — is the car in auto mode right now or not?\""
                     "</div>"
                     "<div style='font-size:13px; color:#374151;'>⚠️ <b>Risk:</b> You may believe automation is active when it isn't, or vice versa — both are dangerous.</div>"
                     "</div>"
 
                     "</div><br>"
-                    "Which of these three traps do you think would be hardest for you to avoid?"
+                    "Did you undertand the potential driver issues?"
                 ),
-                "yes_followup": "Interesting! All three are common — Let's address each one.",
+                "yes_followup": "Perfect! Now let's address each one in detail!",
                 "no_followup": (
-                    "Let me give a concrete example of each:\n\n"
-                    "Over-trust → Driver watches a full movie, misses urgent TOR.\n"
-                    "Complacency → After 90-minute highway drive, driver is slow to respond — crash.\n"
-                    "Mode confusion → Driver thinks automation is on, removes hands from wheel — it wasn't on.\n\n"
+                    "Let me give a concrete example of each:<br><br>"
+                    "Over-trust → Driver watches a full movie, misses urgent TOR.<br><br>"
+                    "Unresponsiveness → The driver sleeps and don't respond in time — crash.<br><br>"
+                    "Mode confusion → Driver thinks automation is on, removes hands from wheel — it wasn't on.<br><br>"
                     "Each trap is different, but all three lead to the same problem: "
                     "not being ready when the system needs you. Does that make the risks clearer?"
                 ),
@@ -688,19 +654,19 @@ SCRIPTED_TOPICS = [
                     "<div style='font-size:13px; color:#374151;'>Tired, stressed, or medicated? Reconsider using Level 3. If you can't take over — don't rely on automation.</div>"
                     "</div>"
 
-                    "Does this set of staying-alert strategies make sense?"
+                    "Does this set of strategies make sense?"
                 ),
                 "yes_followup": "Good. Let's wrap up with the <b>Three Golden Rules.</b>",
                 "no_followup": (
-                    "The core idea is: don't let automation make you a passive passenger.\n\n"
-                    "Stay connected to the drive — just at a lower level of effort.\n"
+                    "The core idea is: <b>Don't let automation make you a passive passenger.</b> <br><br>"
+                    "Stay connected to the drive — just at a lower level of effort.<br><br>"
                     "A quick glance at the road, a check of the HMI, and an honest assessment of how you're feeling "
                     "are all it takes to stay safe. Does that framing help?"
                 ),
             },
             {
                 "message": (
-                    "To close out your training — Three Golden Rules:\n\n"
+                    "To close out your training — Three Golden Rules:<br><br>"
                     "<div style='display:flex; flex-direction:column; gap:10px; margin:8px 0;'>"
 
                     # Rule 1 - Blue
@@ -939,118 +905,243 @@ Tone: Engage participant as a critical thinker. Reference research. Expect subst
 
 QUIZ_QUESTIONS = [
     {
-        "q": "What does SAE Level 3 automation require of the driver?",
+        "q": "According to SAE J3016, which statement best describes a Level 3 automated driving system?",
         "options": {
-            "A": "The driver can sleep as the system handles everything",
-            "B": "The driver must keep hands on the wheel at all times",
-            "C": "The driver must be ready to take over when the system requests it",
-            "D": "The driver must monitor the road continuously without looking away"
+            "A": "The vehicle handles all driving tasks in all conditions with no driver needed",
+            "B": "The driver must monitor the road at all times while the system assists",
+            "C": "The system performs all driving tasks within its ODD, but the driver must respond to takeover requests",
+            "D": "The system controls only steering while the driver controls speed"
         },
         "answer": "C",
         "explanation": (
-            "Level 3 allows the driver to disengage from monitoring, but they must respond "
-            "promptly to a Takeover Request (TOR). Sleeping or refusing to respond is unsafe and prohibited."
-        )
+            "Level 3 (Conditional Automation) means the system handles all Dynamic Driving Tasks within its ODD, "
+            "but the driver must respond to a Takeover Request (TOR) when the system reaches its limits. "
+            "The driver does not need to monitor continuously, but must remain available."
+        ),
+        "feedback_group_a": (
+            "The correct answer is C. Level 3 means the car drives itself within certain conditions, "
+            "but you must take over when it asks. Think of it like a co-pilot — the system handles the driving, "
+            "but you are always the responsible backup. "
+            "You should always remember: Level 3 is NOT fully self-driving. "
+            "When a Takeover Request is issued, you must respond immediately."
+        ),
+        "feedback_group_b": (
+            "The correct answer is <b>C</b>. Level 3 automation performs all driving tasks within its ODD, but the driver must respond to takeover requests when the system reaches its limits."
+        ),
     },
     {
-        "q": "Which of the following is within the typical Operational Design Domain (ODD) of a Level 3 system?",
+        "q": "What is the key difference between Level 2 and Level 3 automation?",
         "options": {
-            "A": "Urban intersection during rush hour",
-            "B": "Highway driving at moderate speed in clear weather on a pre-mapped road",
-            "C": "Snowy mountain roads at night",
-            "D": "A school zone with pedestrians present"
+            "A": "Level 3 is faster than Level 2",
+            "B": "At Level 2, the driver must continuously monitor the surroundings; at Level 3, the system monitors surroundings within its ODD",
+            "C": "Level 2 requires a special license; Level 3 does not",
+            "D": "Level 3 works in all weather conditions; Level 2 does not"
         },
         "answer": "B",
         "explanation": (
-            "Level 3 systems are designed for structured, predictable environments like mapped highways "
-            "in good weather. City intersections, snow, and school zones are outside ODD."
-        )
+            "The critical distinction is who monitors the driving environment. "
+            "At Level 2, the driver must supervise at all times (eyes on road). "
+            "At Level 3, the system monitors within its ODD — the driver can look away but must be ready to respond to a TOR."
+        ),
+        "feedback_group_a": (
+            "The correct answer is B. The biggest difference between Level 2 and Level 3 is simple: "
+            "at Level 2, your eyes must stay on the road at all times, even if the car is steering. "
+            "At Level 3, the car watches the road for you — but only in certain conditions. "
+            "You should always remember: even at Level 3, you must be ready to take back control the moment the car asks."
+        ),
+        "feedback_group_b": (
+            "The correct answer is <b>B</b>. The key difference is monitoring responsibility — Level 2 requires continuous driver monitoring, while Level 3 allows the system to monitor within its ODD."
+        ),
     },
     {
-        "q": "Which of the following should a driver NOT do while Level 3 automation is active?",
+        "q": "Which of the following scenarios is WITHIN the Operational Design Domain (ODD) of a typical Level 3 system?",
         "options": {
-            "A": "Listen to a podcast",
-            "B": "Have a phone conversation",
-            "C": "Watch a full-length movie",
-            "D": "Check messages briefly"
+            "A": "A roundabout in a school zone during heavy rain",
+            "B": "A highway with clear lane markings in clear weather",
+            "C": "A rural unmapped road at night",
+            "D": "A city intersection with pedestrians and cyclists"
+        },
+        "answer": "B",
+        "explanation": (
+            "Level 3 systems are designed for structured, predictable environments: "
+            "highways with clear markings, moderate speed, good weather, and pre-mapped roads. "
+            "Roundabouts, unmapped roads, and city intersections are outside ODD."
+        ),
+        "feedback_group_a": (
+            "The correct answer is B. Level 3 works best on highways with clear, predictable conditions — "
+            "open road, good weather, and visible lane markings. "
+            "It does not work in complex situations like city intersections, roundabouts, or bad weather. "
+            "You should always check your route and conditions before activating Level 3."
+        ),
+        "feedback_group_b": (
+            "The correct answer is <b>B</b>. A highway with clear lane markings in clear weather meets all four ODD conditions. The other options violate one or more ODD boundaries."
+        ),
+    },
+    {
+        "q": "All four ODD conditions must be satisfied simultaneously. Which combination would cause a Level 3 system to disengage?",
+        "options": {
+            "A": "Clear weather + highway + moderate traffic + pre-mapped road",
+            "B": "Light rain + highway + steady traffic + GPS available",
+            "C": "Dense fog + highway + moderate traffic + pre-mapped road",
+            "D": "Daylight + highway + low traffic + manufacturer-approved region"
         },
         "answer": "C",
         "explanation": (
-            "Activities that cannot be stopped within a few seconds are prohibited. "
-            "Watching a movie causes deep focus that prevents timely TOR response. "
-            "Audio tasks (podcasts, calls) can be paused immediately."
-        )
+            "Dense fog degrades all sensors (camera, LiDAR, radar) and causes immediate ODD exit — "
+            "even if road type, traffic, and geography conditions are all met. "
+            "All four ODD categories must be satisfied simultaneously."
+        ),
+        "feedback_group_a": (
+            "The correct answer is C. Dense fog blocks the car's sensors so it cannot see the road safely. "
+            "Even if everything else is fine — highway, light traffic, GPS working — one bad condition is enough to shut the system down. "
+            "You should always remember: all four conditions must be met at the same time. "
+            "If even one fails, Level 3 disengages and you must take over."
+        ),
+        "feedback_group_b": (
+            "The correct answer is <b>C</b>. Dense fog breaks the environmental conditions requirement. All four ODD conditions must be satisfied simultaneously for Level 3 to remain active."
+        ),
     },
     {
-        "q": "What does a RED dashboard warning signal mean in a Level 3 vehicle?",
+        "q": "A driver receives a Takeover Request (ToR) while browsing on their phone. Which of the following is NOT an appropriate immediate response?",
         "options": {
-            "A": "The system is fully active — you may look away",
-            "B": "A Takeover Request is approaching — begin wrapping up tasks",
-            "C": "Take over manual control immediately",
-            "D": "The system has a minor fault but can continue"
+            "A": "Looking up to assess the road ahead",
+            "B": "Taking control of the steering wheel",
+            "C": "Preparing to adjust speed if needed",
+            "D": "Delaying response because the system is still active"
+        },
+        "answer": "D",
+        "explanation": (
+            "This answer is incorrect because delaying your response to a takeover request is unsafe. A ToR indicates that the system has reached its limit and expects the driver to take control."
+            "Even if the system appears to still be active, delaying your response reduces the time available to regain situational awareness and safely stabilize the vehicle."
+        ),
+        "feedback_group_a": (
+            "The correct answer is D. Delaying your response is never acceptable when the car asks you to take over. "
+            "A Takeover Request means the system has reached its limit — it needs YOU right now. "
+            "Even if it looks like the car is still driving fine, you must respond immediately. "
+            "You should always treat every Takeover Request as urgent, no matter what you are doing."
+        ),
+        "feedback_group_b": (
+            "The correct answer is <b>D</b>. Delaying your response is not acceptable. All other actions (looking up, taking the wheel, preparing to adjust speed) are appropriate immediate responses."
+        ),
+    },
+    {
+        "q": "A vehicle is approaching an area with unclear lane markings. The system detects that condition will soon exceed its operational limits and issues a takeover request in advance. This is an example of:",
+        "options": {
+            "A": "Planned ToR",
+            "B": "Urgent ToR",
+            "C": "System Failure",
+            "D": "Driver Distraction"
+        },
+        "answer": "A",
+        "explanation": (
+            "This is a Planned TOR because the system can anticipate that it is approaching conditions outside its Operational Design Domain (ODD), such as construction and faded lane markings."
+            "Since the situation is predictable, the system provides the driver with time to prepare for takeover."
+        ),
+        "feedback_group_a": (
+            "The correct answer is A — this is a Planned Takeover Request. "
+            "The system saw the problem coming and gave you advance warning, so you have time to get ready. "
+            "This is the most manageable type of takeover — you can finish what you are doing, put your hands on the wheel, and take over calmly. "
+            "You should always use this extra time wisely rather than waiting until the last second."
+        ),
+        "feedback_group_b": (
+            "The correct answer is <b>A</b>. When the system anticipates exceeding its operational limits and issues a ToR in advance, this is a Planned ToR."
+        ),
+    },
+    {
+        "q": "What does a Red Steering Wheel HMI dashboard signal indicate?",
+        "options": {
+            "A": "The system has failed and you must drive manually immediately",
+            "B": "Automation is fully active — you may engage in non-driving tasks",
+            "C": "The system approached an ODD boundary — take over now",
+            "D": "A minor sensor issue has been detected but automation continues normally"
         },
         "answer": "C",
         "explanation": (
-            "Red means urgent TOR — act within seconds. "
-            "Green = active, Yellow = prepare, Red = act NOW, Gray = manual only."
-        )
+            "Red = Take over warning. The system is still active but approached an ODD boundary. "
+            "You should wrap up any non-driving tasks and engage in manual control. "
+            "Green = active, Red = act NOW."
+        ),
+        "feedback_group_a": (
+            "The correct answer is C. Red means: take over right now. "
+            "The car is at its limit and needs you to step in immediately. "
+            "Drop whatever you are doing, put your hands on the wheel, and look at the road. "
+            "You should always remember: Green means you are fine, but Red means act now — no delays."
+        ),
+        "feedback_group_b": (
+            "The correct answer is <b>C</b>. RED  means the system approached an ODD boundary and you should prepare to take over."
+        ),
     },
     {
-        "q": "What is the FIRST step to take when a Takeover Request (TOR) is issued?",
+        "q": "A driver is using Level 3 automation on a highway. They move to the back seat to relax while the system is active. What is the main safety issue in this situation?",
         "options": {
-            "A": "Apply the brake immediately",
-            "B": "Check mirrors and blind spots",
-            "C": "Look up and assess the road ahead",
-            "D": "Turn off the automation system"
+            "A": "The driver is not monitoring traffic situations",
+            "B": "The driver is not in a position to take control when needed",
+            "C": "The system cannot operate without supervision",
+            "D": "No change in response performance"
         },
-        "answer": "C",
+        "answer": "B",
         "explanation": (
-            "Eyes to road is step 1. You need situational awareness before any physical action. "
-            "Hands on wheel is step 2, lane stabilization is step 3."
-        )
+            "The Out-of-the-Loop (OOTL) phenomenon shows that extended automation reduces situational awareness. "
+            "After 60+ minutes of automation, TOR response times can be 2-3x slower than at trip start. "
+            "This is why periodic road scans every 30-60 seconds are recommended."
+        ),
+        "feedback_group_a": (
+            "The correct answer is B. Moving to the back seat is never allowed during Level 3 automation. "
+            "Even though the car is driving itself, you must stay in the driver's seat at all times — "
+            "because if the car asks you to take over, you need to be able to reach the wheel immediately. "
+            "You should always stay in the driver's seat, even if you are not actively driving."
+        ),
+        "feedback_group_b": (
+            "The correct answer is <b>B</b>. Being in the back seat means you physically cannot take control quickly enough when the system requests a takeover."
+        ),
     },
     {
-        "q": "Which type of Takeover Request gives the driver the least response time?",
+        "q": "Which of the following activities is ACCEPTABLE while Level 3 automation is active?",
         "options": {
-            "A": "Planned TOR",
-            "B": "Urgent TOR",
-            "C": "Failure TOR",
-            "D": "Scheduled TOR"
+            "A": "Having a phone conversation you can stop within seconds",
+            "B": "Taking a nap in the driver's seat",
+            "C": "Moving to the passenger seat",
+            "D": "Ignoring the ToR"
         },
-        "answer": "C",
+        "answer": "A",
         "explanation": (
-            "Failure TOR is a critical system fault with no defined warning window — "
-            "the vehicle initiates Minimal Risk Condition automatically. "
-            "Planned TOR gives 25-30 seconds; Urgent TOR gives 4-7 seconds."
-        )
+            "Only interruptible tasks are permitted — activities you can stop within a few seconds. "
+            "Phone calls, listening to audio, and light reading are acceptable. "
+            "Watching movies, sleeping, and leaving the seat are all prohibited "
+            "because they prevent timely ToR response."
+        ),
+        "feedback_group_a": (
+            "The correct answer is A. During Level 3, you can do things as long as you can stop them instantly. "
+            "A phone call is fine because you can end it right away. "
+            "But sleeping, moving seats, or ignoring alerts all prevent you from responding when the car needs you. "
+            "You should always ask yourself: 'Can I stop this within 2-3 seconds?' — if not, do not do it."
+        ),
+        "feedback_group_b": (
+            "The correct answer is <b>A</b>. Only activities that can be stopped within seconds are acceptable. You must remain ready to respond to takeover requests."
+        ),
     },
     {
-        "q": "What behavioral trap describes a driver who thinks 'nothing has gone wrong for weeks, so it won't today'?",
+        "q": "A driver believes, “The system can handle most situations, so I don’t need to pay much attention.” This is an example of:",
         "options": {
-            "A": "Over-trust",
-            "B": "Mode confusion",
-            "C": "Complacency",
-            "D": "Under-trust"
+            "A": "Mode confusion",
+            "B": "Unresponsiveness",
+            "C": "Correct Understanding",
+            "D": "Overtrust"
         },
-        "answer": "C",
+        "answer": "D",
         "explanation": (
-            "Complacency (Out-of-the-Loop) is the false sense of security from extended trouble-free automation. "
-            "Research shows TOR response times can be 2-3x slower after 60+ minutes of automation."
-        )
-    },
-    {
-        "q": "Which of the following conditions is OUTSIDE the ODD of a typical Level 3 system?",
-        "options": {
-            "A": "Clear highway with visible lane markings",
-            "B": "Light rain on a pre-mapped motorway",
-            "C": "Dense fog on any road type",
-            "D": "Nighttime driving on a well-lit highway"
-        },
-        "answer": "C",
-        "explanation": (
-            "Dense fog degrades all sensors (camera, LiDAR, radar) and causes immediate ODD exit. "
-            "Light rain, well-lit night roads, and clear highways are generally within ODD."
-        )
+            "This statement reflects overtrust (automation bias), where the driver overestimates the system’s capability and assumes it can handle most situations without supervision."
+            "Level 3 systems operate only within specific conditions, and the driver must remain ready to take over when needed.."
+        ),
+        "feedback_group_a": (
+            "The correct answer is D — this is overtrust. "
+            "Thinking the system can handle everything is dangerous because Level 3 only works in certain conditions. "
+            "The moment the car reaches its limits, it will ask you to take over — and if you are not paying attention, you will not be ready. "
+            "You should always stay mentally available, even when the car is doing the driving."
+        ),
+        "feedback_group_b": (
+            "The correct answer is <b>D</b>. Overtrust occurs when drivers have excessive confidence in automation capabilities and reduce their vigilance as a result."
+        ),
     },
 ]
 
