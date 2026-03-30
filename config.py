@@ -9,8 +9,6 @@
 # CHATBOT_SYSTEM_PROMPT : AI instructor behavior for Group 4
 # =============================================================================
 
-ANTHROPIC_API_KEY = "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"
-MODEL = "claude-haiku-4-5-20251001"
 import base64
 
 def img_to_base64(path):

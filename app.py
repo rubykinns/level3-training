@@ -17,13 +17,6 @@ import json
 import os
 from datetime import datetime
 
-# Streamlit Cloud Secrets에서 API 키 읽기
-try:
-    import config
-    config.ANTHROPIC_API_KEY = st.secrets["ANTHROPIC_API_KEY"]
-except Exception:
-    pass  # 로컬 환경에서는 config.py의 키 사용
-
 st.set_page_config(
     page_title="L3 Automation Training",
     page_icon="🚗",
@@ -115,7 +108,6 @@ html, body, [class*="css"] { font-family: 'DM Sans', sans-serif; }
 # ── Config ────────────────────────────────────────────────────────────────────
 try:
     from config import (
-        ANTHROPIC_API_KEY, MODEL,
         TRAINING_TOPICS,
         SCRIPTED_TOPICS,
         QUIZ_QUESTIONS,
@@ -203,27 +195,6 @@ with st.sidebar:
     if st.session_state.training_group:
         st.caption(f"Group: `{st.session_state.training_group}` / `{st.session_state.knowledge_group}`")
  
- 
-# ── Claude API ────────────────────────────────────────────────────────────────
-def call_claude(system: str, messages: list) -> str:
-    import urllib.request, urllib.error
-    payload = {"model": MODEL, "max_tokens": 1000, "system": system, "messages": messages}
-    data = json.dumps(payload).encode("utf-8")
-    req = urllib.request.Request(
-        "https://api.anthropic.com/v1/messages", data=data,
-        headers={"Content-Type": "application/json",
-                 "x-api-key": ANTHROPIC_API_KEY,
-                 "anthropic-version": "2023-06-01"},
-        method="POST"
-    )
-    try:
-        with urllib.request.urlopen(req) as resp:
-            result = json.loads(resp.read().decode("utf-8"))
-            return " ".join(b["text"] for b in result.get("content", []) if b.get("type") == "text")
-    except urllib.error.HTTPError as e:
-        return f"[API Error {e.code}]: {e.read().decode()}"
-    except Exception as e:
-        return f"[Error]: {str(e)}"
  
 # ── Helpers ───────────────────────────────────────────────────────────────────
 def participant_context():
