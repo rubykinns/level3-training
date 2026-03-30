@@ -305,18 +305,13 @@ if st.session_state.stage == "welcome":
                 st.session_state.chat_history = [first_entry]
                 st.session_state.script_step = 0
             else:
-                # Group 4+B: AI generates opening message
-                topic = TRAINING_TOPICS[0]
-                opening_prompt = (
-                    f"{participant_context()}\n\n"
-                    f"You are starting the training. The first topic is: '{topic['title']}'.\n"
-                    f"Content to teach:\n{topic['content_group_' + kg.lower()]}\n\n"
-                    f"Greet the participant warmly and begin teaching this topic conversationally. "
-                    f"Be engaging and clear. End with a question to check understanding or invite discussion."
-                )
-                with st.spinner("Starting your training session..."):
-                    opening = call_claude(CHATBOT_SYSTEM_PROMPT, [{"role": "user", "content": opening_prompt}])
-                st.session_state.chat_history = [{"role": "assistant", "content": opening}]
+                # Group 4+B: use same fixed script
+                first_step = SCRIPTED_TOPICS[0]["steps"][0]
+                first_entry = {"role": "assistant", "content": first_step["message"]}
+                if "image" in first_step:
+                    first_entry["image"] = first_step["image"]
+                st.session_state.chat_history = [first_entry]
+                st.session_state.script_step = 0
  
             st.session_state.stage = "chat"
             st.rerun()
@@ -480,7 +475,7 @@ elif st.session_state.stage == "quiz":
  
     # ── Header ────────────────────────────────────────────────────────────
     st.markdown(f'<div class="stage-label">Post-Training Quiz &nbsp;·&nbsp; Training Group {tg} &nbsp;·&nbsp; Knowledge Group {kg}</div>', unsafe_allow_html=True)
-    st.progress(q_pos / total_qs)
+    st.progress((q_pos + 1) / total_qs)
  
     # ── All done → summary screen ──────────────────────────────────────────
     if q_pos >= total_qs:
@@ -521,7 +516,8 @@ elif st.session_state.stage == "quiz":
                 "selected": choice,
                 "correct": q["answer"],
                 "is_correct": is_correct,
-                "explanation": q.get("explanation", "")
+                "explanation": q.get("explanation", ""),
+                "q_number": q_pos + 1
             }
             st.session_state.quiz_answers.append(result)
             st.session_state.current_answer = result
@@ -544,7 +540,8 @@ elif st.session_state.stage == "quiz":
         border_color = "#22c55e" if r["is_correct"] else "#ef4444"
         bg_color = "#f0fdf4" if r["is_correct"] else "#fef2f2"
  
-        st.markdown(f"**Question {q_pos} of {total_qs}**")
+        q_number = st.session_state.current_answer.get("q_number", q_pos + 1)
+        st.markdown(f"**Question {q_number} of {total_qs}**")
         st.markdown("---")
  
         # ── Question + answers card ────────────────────────────────────────
