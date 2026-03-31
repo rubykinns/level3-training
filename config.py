@@ -597,7 +597,7 @@ SCRIPTED_TOPICS = [
                     "<div style='background:#f0fdf4; border:1px solid #fcd34d; border-left:4px solid #22c55e; border-radius:10px; padding:14px;'>"
                     "<div style='font-weight:700; color:#15803d; font-size:15px; margin-bottom:6px;'>😵 Trap 3 — Mode Confusion</div>"
                     "<div style='font-style:italic; color:#22c55e; background:#dcfce7; border-radius:6px; padding:8px; margin-bottom:8px; font-size:13px;'>"
-                    "\"Wait — is the car in auto mode right now or not?\""
+                    "\"Wait — is the car in automation mode right now or not?\""
                     "</div>"
                     "<div style='font-size:13px; color:#374151;'>⚠️ <b>Risk:</b> You may believe automation is active when it isn't, or vice versa — both are dangerous.</div>"
                     "</div>"
@@ -917,7 +917,7 @@ QUIZ_QUESTIONS = [
             "The driver does not need to monitor continuously, but must remain available."
         ),
         "feedback_group_a": (
-            "The correct answer is C. Level 3 means the car drives itself within certain conditions, "
+            "The correct answer is <b>C</b>. Level 3 means the car drives itself within certain conditions, "
             "but you must take over when it asks. Think of it like a co-pilot — the system handles the driving, "
             "but you are always the responsible backup. "
             "You should always remember: Level 3 is NOT fully self-driving. "
@@ -942,7 +942,7 @@ QUIZ_QUESTIONS = [
             "At Level 3, the system monitors within its ODD — the driver can look away but must be ready to respond to a TOR."
         ),
         "feedback_group_a": (
-            "The correct answer is B. The biggest difference between Level 2 and Level 3 is simple: "
+            "The correct answer is <b>B</b>. The biggest difference between Level 2 and Level 3 is simple: "
             "at Level 2, your eyes must stay on the road at all times, even if the car is steering. "
             "At Level 3, the car watches the road for you — but only in certain conditions. "
             "You should always remember: even at Level 3, you must be ready to take back control the moment the car asks."
@@ -966,7 +966,7 @@ QUIZ_QUESTIONS = [
             "Roundabouts, unmapped roads, and city intersections are outside ODD."
         ),
         "feedback_group_a": (
-            "The correct answer is B. Level 3 works best on highways with clear, predictable conditions — "
+            "The correct answer is <b>B</b>. Level 3 works best on highways with clear, predictable conditions — "
             "open road, good weather, and visible lane markings. "
             "It does not work in complex situations like city intersections, roundabouts, or bad weather. "
             "You should always check your route and conditions before activating Level 3."
@@ -985,12 +985,12 @@ QUIZ_QUESTIONS = [
         },
         "answer": "C",
         "explanation": (
-            "Dense fog degrades all sensors (camera, LiDAR, radar) and causes immediate ODD exit — "
+            "Dense fog degrades all system detection sensors and causes immediate ODD exit — "
             "even if road type, traffic, and geography conditions are all met. "
             "All four ODD categories must be satisfied simultaneously."
         ),
         "feedback_group_a": (
-            "The correct answer is C. Dense fog blocks the car's sensors so it cannot see the road safely. "
+            "The correct answer is <b>C</b>. Dense fog blocks the car's sensors so it cannot see the road safely. "
             "Even if everything else is fine — highway, light traffic, GPS working — one bad condition is enough to shut the system down. "
             "You should always remember: all four conditions must be met at the same time. "
             "If even one fails, Level 3 disengages and you must take over."
@@ -1009,11 +1009,13 @@ QUIZ_QUESTIONS = [
         },
         "answer": "D",
         "explanation": (
-            "This answer is incorrect because delaying your response to a takeover request is unsafe. A ToR indicates that the system has reached its limit and expects the driver to take control."
-            "Even if the system appears to still be active, delaying your response reduces the time available to regain situational awareness and safely stabilize the vehicle."
+            "Delaying your response to a Takeover Request is never appropriate. "
+            "A ToR means the system has reached its operational limits and requires you to take control immediately. "
+            "All other options — looking up, taking the wheel, adjusting speed — are correct immediate actions. "
+            "Even if the system appears to still be functioning, you must act without hesitation."
         ),
         "feedback_group_a": (
-            "The correct answer is D. Delaying your response is never acceptable when the car asks you to take over. "
+            "The correct answer is <b>D</b>. Delaying your response is never acceptable when the car asks you to take over. "
             "A Takeover Request means the system has reached its limit — it needs YOU right now. "
             "Even if it looks like the car is still driving fine, you must respond immediately. "
             "You should always treat every Takeover Request as urgent, no matter what you are doing."
@@ -1032,11 +1034,11 @@ QUIZ_QUESTIONS = [
         },
         "answer": "A",
         "explanation": (
-            "This is a Planned TOR because the system can anticipate that it is approaching conditions outside its Operational Design Domain (ODD), such as construction and faded lane markings."
+            "This is a Planned TOR because the system can anticipate that it is approaching conditions outside its Operational Design Domain (ODD), such as faded lane markings."
             "Since the situation is predictable, the system provides the driver with time to prepare for takeover."
         ),
         "feedback_group_a": (
-            "The correct answer is A — this is a Planned Takeover Request. "
+            "The correct answer is <b>A</b> — this is a Planned Takeover Request. "
             "The system saw the problem coming and gave you advance warning, so you have time to get ready. "
             "This is the most manageable type of takeover — you can finish what you are doing, put your hands on the wheel, and take over calmly. "
             "You should always use this extra time wisely rather than waiting until the last second."
@@ -1056,11 +1058,11 @@ QUIZ_QUESTIONS = [
         "answer": "C",
         "explanation": (
             "Red = Take over warning. The system is still active but approached an ODD boundary. "
-            "You should wrap up any non-driving tasks and engage in manual control. "
+            "You should wrap up any non-driving tasks and engage in manual control. <br><br>"
             "Green = active, Red = act NOW."
         ),
         "feedback_group_a": (
-            "The correct answer is C. Red means: take over right now. "
+            "The correct answer is <b>C</b>. Red means: take over right now. "
             "The car is at its limit and needs you to step in immediately. "
             "Drop whatever you are doing, put your hands on the wheel, and look at the road. "
             "You should always remember: Green means you are fine, but Red means act now — no delays."
@@ -1079,15 +1081,17 @@ QUIZ_QUESTIONS = [
         },
         "answer": "B",
         "explanation": (
-            "The Out-of-the-Loop (OOTL) phenomenon shows that extended automation reduces situational awareness. "
-            "After 60+ minutes of automation, TOR response times can be 2-3x slower than at trip start. "
-            "This is why periodic road scans every 30-60 seconds are recommended."
+            "The main safety issue is that the driver is physically unable to take control when needed. "
+            "Level 3 requires the driver to remain in the driver's seat at all times — "
+            "close enough to reach the wheel and respond immediately to a Takeover Request. "
+            "Monitoring traffic (A) is not required at Level 3, but physical readiness always is."
         ),
         "feedback_group_a": (
-            "The correct answer is B. Moving to the back seat is never allowed during Level 3 automation. "
+            "The correct answer is <b>B</b>. Moving to the back seat is never allowed during Level 3 automation. "
             "Even though the car is driving itself, you must stay in the driver's seat at all times — "
             "because if the car asks you to take over, you need to be able to reach the wheel immediately. "
             "You should always stay in the driver's seat, even if you are not actively driving."
+            "Monitoring traffic (A) is not required at Level 3, but physical readiness always is."
         ),
         "feedback_group_b": (
             "The correct answer is <b>B</b>. Being in the back seat means you physically cannot take control quickly enough when the system requests a takeover."
@@ -1103,13 +1107,13 @@ QUIZ_QUESTIONS = [
         },
         "answer": "A",
         "explanation": (
-            "Only interruptible tasks are permitted — activities you can stop within a few seconds. "
-            "Phone calls, listening to audio, and light reading are acceptable. "
-            "Watching movies, sleeping, and leaving the seat are all prohibited "
-            "because they prevent timely ToR response."
+            "Only interruptible tasks are permitted during Level 3 automation — "
+            "activities you can stop within a few seconds when a ToR is issued. "
+            "A phone conversation qualifies because you can end it immediately. "
+            "Napping, moving seats, and ignoring alerts all prevent timely takeover response."
         ),
         "feedback_group_a": (
-            "The correct answer is A. During Level 3, you can do things as long as you can stop them instantly. "
+            "The correct answer is <b>A</b>. During Level 3, you can do things as long as you can stop them instantly. "
             "A phone call is fine because you can end it right away. "
             "But sleeping, moving seats, or ignoring alerts all prevent you from responding when the car needs you. "
             "You should always ask yourself: 'Can I stop this within 2-3 seconds?' — if not, do not do it."
@@ -1128,11 +1132,11 @@ QUIZ_QUESTIONS = [
         },
         "answer": "D",
         "explanation": (
-            "This statement reflects overtrust (automation bias), where the driver overestimates the system’s capability and assumes it can handle most situations without supervision."
+            "This statement reflects overtrust, where the driver overestimates the system’s capability and assumes it can handle most situations without supervision."
             "Level 3 systems operate only within specific conditions, and the driver must remain ready to take over when needed.."
         ),
         "feedback_group_a": (
-            "The correct answer is D — this is overtrust. "
+            "The correct answer is <b>D</b> — this is overtrust. "
             "Thinking the system can handle everything is dangerous because Level 3 only works in certain conditions. "
             "The moment the car reaches its limits, it will ask you to take over — and if you are not paying attention, you will not be ready. "
             "You should always stay mentally available, even when the car is doing the driving."

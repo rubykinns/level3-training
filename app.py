@@ -475,7 +475,7 @@ elif st.session_state.stage == "quiz":
  
     # ── Header ────────────────────────────────────────────────────────────
     st.markdown(f'<div class="stage-label">Post-Training Quiz &nbsp;·&nbsp; Training Group {tg} &nbsp;·&nbsp; Knowledge Group {kg}</div>', unsafe_allow_html=True)
-    st.progress((q_pos + 1) / total_qs)
+    st.progress(min((q_pos + 1) / total_qs, 1.0))
  
     # ── All done → summary screen ──────────────────────────────────────────
     if q_pos >= total_qs:
