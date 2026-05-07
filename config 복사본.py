@@ -453,7 +453,7 @@ SCRIPTED_TOPICS = [
                     "<div style='font-size:13px; color:#374151;'>Verify automation is OFF on the HMI. You are now in control.</div></div>"
                     "</div>"
 
-                    "</div><br><br>"
+                    "</div><br>"
                     "Does this <b>5-step ToR response process</b> make sense?"
                 ),
                 "yes_followup": "Good. Now let's look at the three different types of ToR.",
@@ -603,7 +603,7 @@ SCRIPTED_TOPICS = [
                     "</div>"
 
                     "</div><br>"
-                    "Did you understand the potential driver issues?"
+                    "Did you undertand the potential driver issues?"
                 ),
                 "yes_followup": "Perfect! Now let's address each one in detail!",
                 "no_followup": (
@@ -652,7 +652,7 @@ SCRIPTED_TOPICS = [
                     "<div style='font-size:13px; color:#374151;'>Tired, stressed, or medicated? Reconsider using Level 3. If you can't take over — don't rely on automation.</div>"
                     "</div>"
 
-                    "<br><br>Does this set of strategies make sense?"
+                    "Does this set of strategies make sense?"
                 ),
                 "yes_followup": "Good. Let's wrap up with the <b>Three Golden Rules.</b>",
                 "no_followup": (
@@ -912,19 +912,19 @@ QUIZ_QUESTIONS = [
         },
         "answer": "C",
         "explanation": (
-            "The correct answer is C. Level 3 automation performs all driving tasks within its Operational Design Domain (ODD), but the driver must respond to takeover requests when the system reaches its limits"
+            "Level 3 (Conditional Automation) means the system handles all Dynamic Driving Tasks within its ODD, "
+            "but the driver must respond to a Takeover Request (TOR) when the system reaches its limits. "
+            "The driver does not need to monitor continuously, but must remain available."
         ),
-                "feedback_low_k": (
-            "The correct answer is C. According to SAE(Society of Automotive Engineers), a Level 3 system performs all driving tasks — steering, acceleration, and braking — within its Operational Design Domain (ODD). However, the driver is still required to respond when the system issues a Takeover Request (ToR). This is the key distinction: the system drives, but the human driver must be ready to take over the control when requested."
+        "feedback_group_a": (
+            "The correct answer is <b>C</b>. Level 3 means the car drives itself within certain conditions, "
+            "but you must take over when it asks. Think of it like a co-pilot — the system handles the driving, "
+            "but you are always the responsible backup. "
+            "You should always remember: Level 3 is NOT fully self-driving. "
+            "When a Takeover Request is issued, you must respond immediately."
         ),
-        "feedback_high_k": (
-            "The correct answer is C. Level 3 is defined as conditional automation — full driving authority within the Operational Design Domain (ODD), with driver responsibility triggered only by a Takeover Request (ToR)."
-        ),
-        "feedback_low_trust": (
-            "Within its ODD, the system has been specifically engineered and validated to handle all driving tasks. You can rely on it to do its job — that is exactly what it was built for."
-        ),
-        "feedback_high_trust": (
-            "Remember that this capability only applies within the ODD. Outside those boundaries, full responsibility immediately shifts to you as the driver."
+        "feedback_group_b": (
+            "The correct answer is <b>C</b>. Level 3 automation performs all driving tasks within its ODD, but the driver must respond to takeover requests when the system reaches its limits."
         ),
     },
     {
@@ -937,19 +937,18 @@ QUIZ_QUESTIONS = [
         },
         "answer": "B",
         "explanation": (
-            "The correct answer is B. The critical difference is monitoring responsibility. At Level 2, the driver must continuously watch the road. At Level 3, the system monitors within its ODD, allowing the driver to disengage from active monitoring."
+            "The critical distinction is who monitors the driving environment. "
+            "At Level 2, the driver must supervise at all times (eyes on road). "
+            "At Level 3, the system monitors within its ODD — the driver can look away but must be ready to respond to a TOR."
         ),
-                "feedback_low_k": (
-            "The correct answer is B. The most important difference between Level 2 and Level 3 is who monitors the driving environment. At Level 2, the driver must continuously watch the road even while the system assists. At Level 3, the system itself monitors the environment within the ODD — so the driver does not need to constantly watch, but must still be ready to respond to a ToR."
+        "feedback_group_a": (
+            "The correct answer is <b>B</b>. The biggest difference between Level 2 and Level 3 is simple: "
+            "at Level 2, your eyes must stay on the road at all times, even if the car is steering. "
+            "At Level 3, the car watches the road for you — but only in certain conditions. "
+            "You should always remember: even at Level 3, you must be ready to take back control the moment the car asks."
         ),
-        "feedback_high_k": (
-            "The correct answer is B. The critical shift from Level 2 to Level 3 is the transfer of environmental monitoring responsibility from the driver to the system within the ODD."
-        ),
-        "feedback_low_trust": (
-            "This monitoring capability is what makes Level 3 meaningfully different from Level 2. The system is specifically designed and validated to take on this responsibility within its ODD."
-        ),
-        "feedback_high_trust": (
-            "This monitoring responsibility only applies within the ODD. When conditions exceed those boundaries, monitoring responsibility returns to you immediately."
+        "feedback_group_b": (
+            "The correct answer is <b>B</b>. The key difference is monitoring responsibility — Level 2 requires continuous driver monitoring, while Level 3 allows the system to monitor within its ODD."
         ),
     },
     {
@@ -962,19 +961,18 @@ QUIZ_QUESTIONS = [
         },
         "answer": "B",
         "explanation": (
-            "The correct answer is B. This scenario meets all three ODD requirements: highway (roadway), clearmarkings (traffic), clear weather (environmental). The other options violate one or more ODD boundaries."
+            "Level 3 systems are designed for structured, predictable environments: "
+            "highways with clear markings, moderate speed, good weather, and pre-mapped roads. "
+            "Roundabouts, unmapped roads, and city intersections are outside ODD."
         ),
-                "feedback_low_k": (
-            "The correct answer is B. A typical Level 3 system's ODD is defined by specific conditions — usually highways with clear lane markings, good weather, and pre-mapped roads. A roundabout in a school zone during heavy rain, a rural unmapped road, or a city intersection with pedestrians all fall outside typical ODD boundaries. Only a clear highway with clear lane markings fits within the ODD."
+        "feedback_group_a": (
+            "The correct answer is <b>B</b>. Level 3 works best on highways with clear, predictable conditions — "
+            "open road, good weather, and visible lane markings. "
+            "It does not work in complex situations like city intersections, roundabouts, or bad weather. "
+            "You should always check your route and conditions before activating Level 3."
         ),
-        "feedback_high_k": (
-            "The correct answer is B. ODD parameters typically include road type, weather conditions, mapping coverage, and traffic complexity — all of which must be satisfied simultaneously. Only option B meets all criteria."
-        ),
-        "feedback_low_trust": (
-            "When all ODD conditions are met, the system is validated to operate safely in that environment. Within the ODD, the system works exactly as designed."
-        ),
-        "feedback_high_trust": (
-            "Notice how specific and narrow the ODD conditions are. Confidence in the system should apply only when all ODD conditions are simultaneously satisfied."
+        "feedback_group_b": (
+            "The correct answer is <b>B</b>. A highway with clear lane markings in clear weather meets all four ODD conditions. The other options violate one or more ODD boundaries."
         ),
     },
     {
@@ -987,19 +985,18 @@ QUIZ_QUESTIONS = [
         },
         "answer": "C",
         "explanation": (
-            "The correct answer is C. Dense fog violates the environmental conditions requirement. Even though the other three conditions are met, breaking just one ODD boundary causes the system to disengage."
+            "Dense fog degrades all system detection sensors and causes immediate ODD exit — "
+            "even if road type, traffic, and geography conditions are all met. "
+            "All four ODD categories must be satisfied simultaneously."
         ),
-                "feedback_low_k": (
-            "The correct answer is C. All ODD conditions must be met at the same time for Level 3 to operate. Dense fog is a weather condition that falls outside the typical ODD, even if the road type, traffic, and mapping conditions are fine. When any single ODD condition is violated, the system must disengage and request a takeover."
+        "feedback_group_a": (
+            "The correct answer is <b>C</b>. Dense fog blocks the car's sensors so it cannot see the road safely. "
+            "Even if everything else is fine — highway, light traffic, GPS working — one bad condition is enough to shut the system down. "
+            "You should always remember: all four conditions must be met at the same time. "
+            "If even one fails, Level 3 disengages and you must take over."
         ),
-        "feedback_high_k": (
-            "The correct answer is C. ODD conditions are interdependent — all must be satisfied simultaneously. Dense fog alone is sufficient to trigger disengagement regardless of other favorable conditions."
-        ),
-        "feedback_low_trust": (
-            "The system is designed to detect ODD violations and disengage before the situation becomes unsafe. This self-monitoring capability is a core safety feature of Level 3."
-        ),
-        "feedback_high_trust": (
-            "This question illustrates how narrow the ODD actually is. A single adverse condition is enough to require your full intervention."
+        "feedback_group_b": (
+            "The correct answer is <b>C</b>. Dense fog breaks the environmental conditions requirement. All four ODD conditions must be satisfied simultaneously for Level 3 to remain active."
         ),
     },
     {
@@ -1012,19 +1009,19 @@ QUIZ_QUESTIONS = [
         },
         "answer": "D",
         "explanation": (
-            "The correct answer is D. Delaying your response to a Takeover Request is never appropriate. All other actions (looking up, taking the wheel, preparing to adjust speed) are appropriate immediate responses."
+            "Delaying your response to a Takeover Request is never appropriate. "
+            "A ToR means the system has reached its operational limits and requires you to take control immediately. "
+            "All other options — looking up, taking the wheel, adjusting speed — are correct immediate actions. "
+            "Even if the system appears to still be functioning, you must act without hesitation."
         ),
-                "feedback_low_k": (
-            "The correct answer is D. When a Takeover Request (ToR) is issued, the driver must respond immediately — even if the system appears to be functioning. The ToR signals that the system has reached the limit of its operational capability. Delaying a response because 'the system is still active' is incorrect and dangerous. Under SAE J3016, responding to a ToR is the driver's legal and safety responsibility."
+        "feedback_group_a": (
+            "The correct answer is <b>D</b>. Delaying your response is never acceptable when the car asks you to take over. "
+            "A Takeover Request means the system has reached its limit — it needs YOU right now. "
+            "Even if it looks like the car is still driving fine, you must respond immediately. "
+            "You should always treat every Takeover Request as urgent, no matter what you are doing."
         ),
-        "feedback_high_k": (
-            "The correct answer is D. A ToR signals that the system has reached its ODD boundary. The system remaining temporarily active during the ToR window does not transfer responsibility — the driver must begin taking over immediately."
-        ),
-        "feedback_low_trust": (
-            "The ToR system is designed to give the driver sufficient time to respond safely. This response window is a built-in part of the system's safety architecture — it exists precisely because driver involvement is expected and planned for."
-        ),
-        "feedback_high_trust": (
-            "The fact that the system is still running when a ToR appears does not mean it is safe to delay. The ToR is the system telling you it can no longer guarantee safe operation."
+        "feedback_group_b": (
+            "The correct answer is <b>D</b>. Delaying your response is not acceptable. All other actions (looking up, taking the wheel, preparing to adjust speed) are appropriate immediate responses."
         ),
     },
     {
@@ -1037,19 +1034,17 @@ QUIZ_QUESTIONS = [
         },
         "answer": "A",
         "explanation": (
-            "The correct answer is A. Planned ToR occurs when the system detects that conditions will soon exceed its capabilities and issues a takeover request in advance, giving the driver time to prepare and transition smoothly."
+            "This is a Planned TOR because the system can anticipate that it is approaching conditions outside its Operational Design Domain (ODD), such as faded lane markings."
+            "Since the situation is predictable, the system provides the driver with time to prepare for takeover."
         ),
-                "feedback_low_k": (
-            "The correct answer is A, Planned ToR. There are two types of Takeover Requests (ToR). A Planned ToR occurs when the system anticipates that ODD conditions will be exceeded soon — for example, approaching unclear lane markings — and gives the driver advance notice. An Urgent ToR occurs when an immediate threat requires instant driver intervention. In this scenario, the system detected the issue in advance and issued the request proactively, making it a Planned ToR."
+        "feedback_group_a": (
+            "The correct answer is <b>A</b> — this is a Planned Takeover Request. "
+            "The system saw the problem coming and gave you advance warning, so you have time to get ready. "
+            "This is the most manageable type of takeover — you can finish what you are doing, put your hands on the wheel, and take over calmly. "
+            "You should always use this extra time wisely rather than waiting until the last second."
         ),
-        "feedback_high_k": (
-            "The correct answer is A. The advance detection of an upcoming ODD boundary and proactive ToR issuance is the defining characteristic of a Planned ToR, as opposed to an Urgent ToR triggered by an immediate hazard."
-        ),
-        "feedback_low_trust": (
-            "The fact that the system detected this issue in advance and warned you is exactly how the safety design is supposed to work. This predictive capability is a feature you can rely on."
-        ),
-        "feedback_high_trust": (
-            "A Planned ToR still requires your prompt response. 'Advance notice' does not mean you have unlimited time — it means the system is giving you the window to take over safely."
+        "feedback_group_b": (
+            "The correct answer is <b>A</b>. When the system anticipates exceeding its operational limits and issues a ToR in advance, this is a Planned ToR."
         ),
     },
     {
@@ -1062,19 +1057,18 @@ QUIZ_QUESTIONS = [
         },
         "answer": "C",
         "explanation": (
-            "The correct answer is C. RED is a takeover warning signal. The system is still active but approached an ODD boundary. Wrap up non-driving tasks and prepare to take control."
+            "Red = Take over warning. The system is still active but approached an ODD boundary. "
+            "You should wrap up any non-driving tasks and engage in manual control. <br><br>"
+            "Green = active, Red = take over."
         ),
-                "feedback_low_k": (
-            "The correct answer is C. The HMI (Human-Machine Interface) dashboard uses color-coded signals to communicate system status. A red icon indicates that the system is approaching an ODD boundary and is requesting a takeover — it does not mean the system has completely failed. You must prepare to take control immediately when you see a red icon."
+        "feedback_group_a": (
+            "The correct answer is <b>C</b>. Red means: take over. "
+            "The car is at its limit and needs you to step in. "
+            "Drop whatever you are doing, put your hands on the wheel, and look at the road. "
+            "You should always remember: Green means you are fine, but Red means take over."
         ),
-        "feedback_high_k": (
-            "The correct answer is C. A red HMI signal indicates an ODD boundary condition requiring driver takeover, not a system failure. Distinguishing between these two states is critical for appropriate driver response."
-        ),
-        "feedback_low_trust": (
-            "The HMI is specifically designed to give you clear, timely information about the system's status. This color-coded signaling system is a core part of how Level 3 keeps you informed — so you can act at the right moment with clear understanding."
-        ),
-        "feedback_high_trust": (
-            "A red icon requires your response — even if the system appears to still be functioning. Delaying because you trust the system to manage the situation is exactly when overtrust becomes dangerous."
+        "feedback_group_b": (
+            "The correct answer is <b>C</b>. RED  means the system approached an ODD boundary and you should prepare to take over."
         ),
     },
     {
@@ -1087,19 +1081,20 @@ QUIZ_QUESTIONS = [
         },
         "answer": "B",
         "explanation": (
-            "The correct answer is B. The main safety issue is that the driver is physically unable to take control when needed. If you're in the back seat, you cannot quickly reach the steering wheel and pedals to take control when a takeover request occurs."
+            "The main safety issue is that the driver is physically unable to take control when needed. "
+            "Level 3 requires the driver to remain in the driver's seat at all times — "
+            "close enough to reach the wheel and respond immediately to a Takeover Request. "
+            "Monitoring traffic (A) is not required at Level 3, but physical readiness always is."
         ),
-                "feedback_low_k": (
-            "The correct answer is B. Even when Level 3 automation is active, the driver must remain in a position where they can physically take control of the vehicle when a ToR is issued. Moving to the back seat makes it physically impossible to respond in time. Level 3 does not permit the driver to be out of the driver's seat during operation."
+        "feedback_group_a": (
+            "The correct answer is <b>B</b>. Moving to the back seat is never allowed during Level 3 automation. "
+            "Even though the car is driving itself, you must stay in the driver's seat at all times — "
+            "because if the car asks you to take over, you need to be able to reach the wheel immediately. "
+            "You should always stay in the driver's seat, even if you are not actively driving."
+            "Monitoring traffic (A) is not required at Level 3, but physical readiness always is."
         ),
-        "feedback_high_k": (
-            "The correct answer is B. Level 3 automation requires the driver to maintain physical readiness for takeover within the ToR response window. Positioning that prevents timely access to the controls directly violates this requirement."
-        ),
-        "feedback_low_trust": (
-            "Level 3 is designed to give you freedom from active monitoring — not freedom from physical readiness. Physical readiness is how the system's safety guarantee stays intact."
-        ),
-        "feedback_high_trust": (
-            "Moving to the back seat may feel reasonable when the system is running smoothly — but a ToR can occur at any moment. By the time you return to the seat, the response window may already have passed."
+        "feedback_group_b": (
+            "The correct answer is <b>B</b>. Being in the back seat means you physically cannot take control quickly enough when the system requests a takeover."
         ),
     },
     {
@@ -1112,21 +1107,19 @@ QUIZ_QUESTIONS = [
         },
         "answer": "A",
         "explanation": (
-            "The correct answer is A. Only activities that can be stopped within seconds are acceptable in Level 3 automation. — "
-            "A phone conversation that can be interrupted within seconds is acceptable because you can quickly disengage and respond to a takeover request."
+            "Only interruptible tasks are permitted during Level 3 automation — "
+            "activities you can stop within a few seconds when a ToR is issued. "
+            "A phone conversation qualifies because you can end it immediately. "
             "Napping, moving seats, and ignoring alerts all prevent timely takeover response."
         ),
-                "feedback_low_k": (
-            "The correct answer is A. During Level 3 automation, drivers may engage in non-driving tasks — but only those that can be stopped within seconds when a ToR is issued. A phone conversation that can be paused immediately is acceptable. Taking a nap, moving to the passenger seat, or ignoring a ToR are all unacceptable because they prevent timely takeover."
+        "feedback_group_a": (
+            "The correct answer is <b>A</b>. During Level 3, you can do things as long as you can stop them instantly. "
+            "A phone call is fine because you can end it right away. "
+            "But sleeping, moving seats, or ignoring alerts all prevent you from responding when the car needs you. "
+            "You should always ask yourself: 'Can I stop this within 2-3 seconds?' — if not, do not do it."
         ),
-        "feedback_high_k": (
-            "The correct answer is A. The key criterion for acceptable non-driving tasks during Level 3 is interruptibility — the task must be immediately stoppable to allow timely ToR response."
-        ),
-        "feedback_low_trust": (
-            "Level 3 is specifically designed to allow secondary tasks within safe boundaries. Engaging in interruptible tasks is not a misuse of the system; it is exactly what it was designed to accommodate."
-        ),
-        "feedback_high_trust": (
-            "Not all secondary tasks are acceptable. The interruptibility criterion is the boundary of what Level 3 actually permits — anything beyond this exceeds the system's design."
+        "feedback_group_b": (
+            "The correct answer is <b>A</b>. Only activities that can be stopped within seconds are acceptable. You must remain ready to respond to takeover requests."
         ),
     },
     {
@@ -1139,19 +1132,17 @@ QUIZ_QUESTIONS = [
         },
         "answer": "D",
         "explanation": (
-            "The correct answer is D. This is overtrust in automation. When drivers place too much confidence in the system's capabilities and believe it can handle 'most situations', they reduce their attention and readiness to intervene."
+            "This statement reflects overtrust, where the driver overestimates the system’s capability and assumes it can handle most situations without supervision."
+            "Level 3 systems operate only within specific conditions, and the driver must remain ready to take over when needed.."
         ),
-                "feedback_low_k": (
-            "The correct answer is D. Overtrust happens when a driver believes the system can handle more situations than it actually can, leading them to reduce attention or preparation. Level 3 only operates within its ODD — situations outside that domain require full driver involvement. This is different from Mode Confusion, where a driver misunderstands whether the automation is currently active or not. It is also different from Unresponsiveness, which describes the behavioral outcome of failing to react to a ToR — Overtrust is the mindset that often leads to Unresponsiveness."
+        "feedback_group_a": (
+            "The correct answer is <b>D</b> — this is overtrust. "
+            "Thinking the system can handle everything is dangerous because Level 3 only works in certain conditions. "
+            "The moment the car reaches its limits, it will ask you to take over — and if you are not paying attention, you will not be ready. "
+            "You should always stay mentally available, even when the car is doing the driving."
         ),
-        "feedback_high_k": (
-            "The correct answer is D. Overtrust is an overestimation in system capability beyond its actual ODD, leading to reduced driver readiness."
-        ),
-        "feedback_low_trust": (
-            "Overtrust is dangerous — but so is its opposite. Undertrust, or excessive skepticism about the system's validated capabilities, can lead to unnecessary manual takeovers that introduce their own risks."
-        ),
-        "feedback_high_trust": (
-            "The mindset described in this question — 'the system handles most situations' — may feel reasonable, but it is exactly what overtrust looks like. Confidence in the system should always be bounded by awareness of its ODD limits."
+        "feedback_group_b": (
+            "The correct answer is <b>D</b>. Overtrust occurs when drivers have excessive confidence in automation capabilities and reduce their vigilance as a result."
         ),
     },
 ]
@@ -1207,190 +1198,4 @@ Key content to draw from across all modules:
 - Behavioral traps: Over-trust, Complacency (OOTL), Mode Confusion
 - Countermeasures: road scans, interruptible tasks, HMI verification, honest self-assessment
 - Three Golden Rules: responsible partner, stay in loop, manual when in doubt
-"""
-
-# =============================================================================
-# API SETTINGS — Group 4 LLM
-# =============================================================================
-ANTHROPIC_API_KEY = "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"  # Add your API key here
-MODEL = "claude-haiku-4-5-20251001"
-
-# =============================================================================
-# KNOWLEDGE BASE — used for Group 4 Q&A (answers only from this)
-# =============================================================================
-KNOWLEDGE_BASE = """
-=== MODULE 1: CORE CONCEPTS ===
-
-SAE LEVELS:
-- Level 0: No automation. Full driver responsibility.
-- Level 1: Single automated system (e.g. speed or steering). Driver monitors continuously.
-- Level 2: Vehicle performs steering and acceleration. Driver monitors continuously and takes control at any time.
-- Level 3: Vehicle performs most driving tasks under specific conditions. Driver NOT responsible for monitoring, but MUST be ready to take over on request.
-- Level 4: Vehicle handles all driving tasks under most conditions. Minimal intervention necessary.
-- Level 5: Full automation. No driver responsibility.
-
-WHAT IS LEVEL 3:
-- System Takes the Wheel: The vehicle steers, accelerates, and brakes on its own within specific conditions.
-- Conditional, Not Full Auto: Works only within the Operational Design Domain (ODD).
-- Takeover is Your Responsibility: When the system reaches its limits, it issues a Takeover Request (TOR). You must respond.
-
-LEVEL 2 VS LEVEL 3:
-- Who monitors the road? Level 2: Driver always. Level 3: System (within ODD).
-- Eyes off road allowed? Level 2: No. Level 3: Yes, limited.
-- Driving responsibility: Level 2: Driver always. Level 3: System transitions to Driver.
-- Takeover request (ToR)? Level 2: Not applicable. Level 3: Yes, driver must respond.
-- Non-driving tasks OK? Level 2: No. Level 3: Yes, with restrictions.
-- Key Takeaway: Level 3 shifts monitoring responsibility to the system, but the driver must remain ready to take control when requested.
-
-DRIVER RESPONSIBILITIES:
-- Stay in the driver's seat at all times, within reach of the steering wheel.
-- Be physically able to resume control — do not be fatigued, impaired, or medicated.
-- Keep hands and feet ready when alerted.
-- Respond to every Takeover Request (TOR) immediately. Never dismiss or delay.
-- Monitor system status: glance at HMI every 30-60 seconds. Green = active, Yellow = prepare, Red = act now.
-
-WHAT NOT TO DO:
-- SLEEP or become fully unresponsive — drowsy drivers take 8+ sec to respond vs 3 sec when alert.
-- LEAVE the driver's seat.
-- IGNORE or DISMISS a TOR alert.
-- DRIVE under the influence.
-- Engage in uninterruptible tasks — must always be able to stop immediately.
-
-=== MODULE 2: OPERATIONAL DESIGN DOMAIN (ODD) ===
-
-WHAT IS ODD:
-- Defines the specific conditions under which Level 3 is designed to function safely.
-- Defined by the manufacturer, not the driver.
-- Outside ODD = system may not operate reliably and will request driver takeover.
-- All four ODD conditions must be satisfied simultaneously.
-
-ODD CATEGORY 1 — ROAD TYPE:
-- Works on: Divided highways, limited-access roads, clearly visible lane markings, predictable geometry.
-- Outside ODD: Urban streets, roundabouts, school zones, construction-altered roads, unmarked rural roads.
-
-ODD CATEGORY 2 — TRAFFIC CONDITIONS:
-- Works with: Moderate and predictable highway traffic, stop-and-go within speed range, limited vulnerable road users.
-- Risk increases with: Frequent cut-ins, dense chaotic traffic, cyclists & pedestrians, emergency vehicles.
-
-ODD CATEGORY 3 — ENVIRONMENTAL CONDITIONS:
-- Works in: Clear sky, daylight or well-lit roads, light rain, dry surface.
-- Limitations: Heavy rain or snow, dense fog (all sensors degrade), low-angle sunlight, ice/mud/sensor blockage.
-
-ODD CATEGORY 4 — GEOGRAPHIC CONDITIONS:
-- Works with: Pre-mapped road segments, centimeter-level GPS, manufacturer-approved regions.
-- May disengage: Tunnels (GPS loss), dense urban canyons, unmapped roads, unapproved regions.
-
-=== MODULE 3: TAKEOVER REQUESTS (TOR) ===
-
-WHAT IS A TOR:
-- The system's signal: "I cannot continue safely — please take manual control now."
-- Alert types: Visual (dashboard flashes), Audible (repeated alarm tones, escalates), Haptic (seat vibrates, steering wheel pulses).
-
-TOR RESPONSE STEPS (in order):
-1. Eyes to Road — immediately look up and assess.
-2. Hands on Wheel — both hands firmly on.
-3. Stabilize Lane — maintain lane smoothly, no sudden inputs.
-4. Assess Surroundings — check mirrors, blind spots, what triggered TOR.
-5. Apply Brake/Acceleration — react to road situation.
-6. Confirm Full Manual Control — verify automation is fully off on HMI.
-
-THREE TYPES OF TOR:
-1. PLANNED (25-30 sec): System detects upcoming ODD boundary. Most manageable.
-   Response: Wrap up task → Eyes on road → Hands on wheel → Accept control early.
-2. URGENT (4-7 sec): Unexpected event. Strong alerts: beeps, seat vibration.
-   Response: Drop everything immediately → Eyes on road → Hands on wheel → Assess and react.
-3. FAILURE: Critical system fault. Vehicle initiates Minimal Risk Condition (MRC).
-   Response: Take control ASAP. If unable — assist MRC. Steer to shoulder when safe.
-
-=== MODULE 4: HMI STATUS SIGNALS ===
-
-- GREEN: System Active. Automation fully engaged. You may engage in permitted non-driving tasks.
-- RED: Take Over NOW. Drop everything. Hands on wheel. Eyes on road. Act within seconds.
-
-=== MODULE 5: DRIVER BEHAVIORAL ISSUES ===
-
-THREE DRIVER TRAPS:
-1. Overtrust (Automation Bias): "The system handles everything. I don't need to stay alert."
-   Risk: When the system hits its limits, you won't be ready to take over in time.
-2. Unresponsiveness (Out-of-the-Loop): "Nothing has gone wrong in weeks, so nothing will today."
-   Risk: After 60+ min of automation, TOR response times can be 2-3x slower.
-3. Mode Confusion: "Wait — is the car in auto mode right now or not?"
-   Risk: You may believe automation is active when it isn't, or vice versa.
-
-STAYING ALERT:
-1. Scan the road every 30-60 seconds.
-2. Choose interruptible secondary tasks only (phone calls, audio — not movies or games).
-3. Verify HMI at every transition before looking away.
-4. Be honest about your condition — tired or medicated? Reconsider using Level 3.
-
-THREE GOLDEN RULES:
-1. You are a responsible partner, not a passenger.
-2. Stay in the loop — periodic road scans keep response time sharp.
-3. When in doubt — drive manually. Always the safest choice.
-"""
-
-# =============================================================================
-# GROUP 4 STYLE PROMPTS — A/B/C/D
-# Each generates ONLY 1-2 personalized sentences to append after the script.
-# =============================================================================
-
-GROUP4_STYLE_PROMPT_A = """
-You are an AI driving instructor writing a brief personalized follow-up note
-for a participant with LOW prior knowledge and LOW trust in Level 3 automation.
-
-Write ONLY 1-2 sentences that:
-- Use simple, everyday language (no jargon)
-- Build trust in the system: "This system is designed to...", "You can rely on it when..."
-- Connect to a practical driving situation
-- Use directive guidance: "You should always...", "Make sure to..."
-
-STRICT RULES:
-- Do NOT repeat or summarize what was already said
-- Do NOT add any new facts, numbers, or information not in the content
-- Output ONLY the 1-2 sentences, nothing else
-"""
-
-GROUP4_STYLE_PROMPT_B = """
-You are an AI driving instructor writing a brief personalized follow-up note
-for a participant with LOW prior knowledge and HIGH trust (over-trust) in Level 3 automation.
-
-Write ONLY 1-2 sentences that:
-- Use simple language
-- Calibrate over-trust: "However, remember that...", "The system does have limits..."
-- Remind them the driver MUST be ready to take over
-
-STRICT RULES:
-- Do NOT repeat or summarize what was already said
-- Do NOT add any new facts, numbers, or information not in the content
-- Output ONLY the 1-2 sentences, nothing else
-"""
-
-GROUP4_STYLE_PROMPT_C = """
-You are an AI driving instructor writing a brief personalized follow-up note
-for a participant with HIGH prior knowledge and LOW trust in Level 3 automation.
-
-Write ONLY 1-2 sentences that:
-- Use technically accurate language (SAE terminology welcome)
-- Build appropriate trust: "The system is validated to...", "Within the ODD, this is reliable..."
-- Distinguish warranted caution (outside ODD) from unwarranted distrust (within ODD)
-
-STRICT RULES:
-- Do NOT repeat or summarize what was already said
-- Do NOT add any new facts, numbers, or information not in the content
-- Output ONLY the 1-2 sentences, nothing else
-"""
-
-GROUP4_STYLE_PROMPT_D = """
-You are an AI driving instructor writing a brief personalized follow-up note
-for a participant with HIGH prior knowledge and HIGH trust (over-trust) in Level 3 automation.
-
-Write ONLY 1-2 sentences that:
-- Use technically precise language
-- Challenge over-reliance: "This is where overtrust becomes dangerous...", "The distinction here is..."
-- Reference behavioral traps: automation bias, out-of-the-loop
-
-STRICT RULES:
-- Do NOT repeat or summarize what was already said
-- Do NOT add any new facts, numbers, or information not in the content
-- Output ONLY the 1-2 sentences, nothing else
 """

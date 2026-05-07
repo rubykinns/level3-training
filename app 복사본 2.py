@@ -180,89 +180,86 @@ for k, v in defaults.items():
         st.session_state[k] = v
  
 # ── Developer Sidebar (hidden from participants) ──────────────────────────────
-DEV_MODE = False
-
 with st.sidebar:
-    if DEV_MODE:
-        st.markdown('### 🛠️ Developer Tools')
-        st.caption('Not visible to participants during the study.')
-        st.markdown('---')
+    st.markdown('### 🛠️ Developer Tools')
+    st.caption('Not visible to participants during the study.')
+    st.markdown('---')
  
-        dev_tg = st.selectbox('Training Group', ['3', '4'], key='dev_tg')
-        dev_kg = st.selectbox('Knowledge Group', ['A', 'B', 'C', 'D'], key='dev_kg')
+    dev_tg = st.selectbox('Training Group', ['3', '4'], key='dev_tg')
+    dev_kg = st.selectbox('Knowledge Group', ['A', 'B', 'C', 'D'], key='dev_kg')
  
-        if st.button('⏭️ Skip to Quiz', use_container_width=True):
-            st.session_state.participant_id = 'DEV_TEST'
-            st.session_state.training_group = dev_tg
-            st.session_state.knowledge_group = dev_kg
-            st.session_state.session_start = datetime.now().isoformat()
-            st.session_state.stage = 'quiz'
-            st.session_state.quiz_answers = []
-            st.session_state.quiz_order = []
-            st.session_state.quiz_q_index = 0
-            st.session_state.quiz_step = 'question'
-            st.session_state.current_answer = {}
-            st.session_state.feedback_shown_at = None
-            st.session_state.g4_topic_index = 0
-            st.session_state.g4_step_index = 0
-            st.session_state.g4_step_delivered = False
-            st.session_state.g4_qa_count = 0
-            st.session_state.chat_history = []
-            st.rerun()
-    
-        if st.button('⏭️ Skip to Quiz (with answers)', use_container_width=True):
-            import random as _random
-            st.session_state.participant_id = 'DEV_TEST'
-            st.session_state.training_group = dev_tg
-            st.session_state.knowledge_group = dev_kg
-            st.session_state.session_start = datetime.now().isoformat()
-            st.session_state.stage = 'quiz'
-            st.session_state.feedback_shown_at = None
-            st.session_state.g4_topic_index = 0
-            st.session_state.g4_step_index = 0
-            st.session_state.g4_step_delivered = False
-            st.session_state.g4_qa_count = 0
-            st.session_state.chat_history = []
-            dummy = []
-            for q in QUIZ_QUESTIONS:
-                kg = dev_kg
-                keys = list(q['options'].keys())
-                selected = q['answer'] if _random.random() > 0.4 else _random.choice(keys)
-                result = {
-                    'question': q['q'],
-                    'options': q['options'],
-                    'selected': selected,
-                    'correct': q['answer'],
-                    'is_correct': selected == q['answer'],
-                    'explanation': q.get('explanation', ''),
-                    'q_number': len(dummy) + 1,
-                }
-                if dev_tg == '4':
-                    if kg in ('A', 'B'):
-                        concept = q.get('feedback_low_k', q.get('explanation', ''))
-                    else:
-                        concept = q.get('feedback_high_k', q.get('explanation', ''))
-                    trust = q.get('feedback_low_trust', '') if kg in ('A', 'C') else q.get('feedback_high_trust', '')
-                    result['per_q_feedback'] = concept + (' ' + trust if trust else '')
-                dummy.append(result)
-            order = list(range(len(QUIZ_QUESTIONS)))
-            _random.shuffle(order)
-            st.session_state.quiz_answers = dummy
-            st.session_state.quiz_order = order
-            st.session_state.quiz_q_index = len(dummy)
-            st.session_state.quiz_step = 'question'
-            st.session_state.current_answer = {}
-            st.rerun()
-    
-        if st.button('🔄 Reset', use_container_width=True):
-            for k in list(st.session_state.keys()):
-                del st.session_state[k]
-            st.rerun()
-    
-        st.markdown('---')
-        st.caption(f"Stage: `{st.session_state.stage}`")
-        if st.session_state.training_group:
-            st.caption(f"Group: `{st.session_state.training_group}` / `{st.session_state.knowledge_group}`")
+    if st.button('⏭️ Skip to Quiz', use_container_width=True):
+        st.session_state.participant_id = 'DEV_TEST'
+        st.session_state.training_group = dev_tg
+        st.session_state.knowledge_group = dev_kg
+        st.session_state.session_start = datetime.now().isoformat()
+        st.session_state.stage = 'quiz'
+        st.session_state.quiz_answers = []
+        st.session_state.quiz_order = []
+        st.session_state.quiz_q_index = 0
+        st.session_state.quiz_step = 'question'
+        st.session_state.current_answer = {}
+        st.session_state.feedback_shown_at = None
+        st.session_state.g4_topic_index = 0
+        st.session_state.g4_step_index = 0
+        st.session_state.g4_step_delivered = False
+        st.session_state.g4_qa_count = 0
+        st.session_state.chat_history = []
+        st.rerun()
+ 
+    if st.button('⏭️ Skip to Quiz (with answers)', use_container_width=True):
+        import random as _random
+        st.session_state.participant_id = 'DEV_TEST'
+        st.session_state.training_group = dev_tg
+        st.session_state.knowledge_group = dev_kg
+        st.session_state.session_start = datetime.now().isoformat()
+        st.session_state.stage = 'quiz'
+        st.session_state.feedback_shown_at = None
+        st.session_state.g4_topic_index = 0
+        st.session_state.g4_step_index = 0
+        st.session_state.g4_step_delivered = False
+        st.session_state.g4_qa_count = 0
+        st.session_state.chat_history = []
+        dummy = []
+        for q in QUIZ_QUESTIONS:
+            kg = dev_kg
+            keys = list(q['options'].keys())
+            selected = q['answer'] if _random.random() > 0.4 else _random.choice(keys)
+            result = {
+                'question': q['q'],
+                'options': q['options'],
+                'selected': selected,
+                'correct': q['answer'],
+                'is_correct': selected == q['answer'],
+                'explanation': q.get('explanation', ''),
+                'q_number': len(dummy) + 1,
+            }
+            if dev_tg == '4':
+                if kg in ('A', 'B'):
+                    concept = q.get('feedback_low_k', q.get('explanation', ''))
+                else:
+                    concept = q.get('feedback_high_k', q.get('explanation', ''))
+                trust = q.get('feedback_low_trust', '') if kg in ('A', 'C') else q.get('feedback_high_trust', '')
+                result['per_q_feedback'] = concept + (' ' + trust if trust else '')
+            dummy.append(result)
+        order = list(range(len(QUIZ_QUESTIONS)))
+        _random.shuffle(order)
+        st.session_state.quiz_answers = dummy
+        st.session_state.quiz_order = order
+        st.session_state.quiz_q_index = len(dummy)
+        st.session_state.quiz_step = 'question'
+        st.session_state.current_answer = {}
+        st.rerun()
+ 
+    if st.button('🔄 Reset', use_container_width=True):
+        for k in list(st.session_state.keys()):
+            del st.session_state[k]
+        st.rerun()
+ 
+    st.markdown('---')
+    st.caption(f"Stage: `{st.session_state.stage}`")
+    if st.session_state.training_group:
+        st.caption(f"Group: `{st.session_state.training_group}` / `{st.session_state.knowledge_group}`")
  
  
 # ── Helpers ───────────────────────────────────────────────────────────────────
@@ -313,18 +310,14 @@ def render_topic_progress():
 def save_log():
     os.makedirs("logs", exist_ok=True)
     pid = st.session_state.participant_id
-    results = st.session_state.quiz_answers
-    correct_count = sum(1 for r in results if r["is_correct"])
     log = {
         "participant_id": pid,
         "training_group": st.session_state.training_group,
         "knowledge_group": st.session_state.knowledge_group,
         "session_start": st.session_state.session_start,
         "session_end": datetime.now().isoformat(),
-        "quiz_score": f"{correct_count}/{len(results)}",  # ← 추가
-        "quiz_correct": correct_count,                     # ← 추가
-        "quiz_total": len(results),                        # ← 추가
         "quiz_answers": st.session_state.quiz_answers,
+        "feedback": st.session_state.feedback_text,
     }
     fname = f"logs/{pid}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
     with open(fname, "w", encoding="utf-8") as f:
