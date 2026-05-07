@@ -1212,7 +1212,7 @@ Key content to draw from across all modules:
 # =============================================================================
 # API SETTINGS — Group 4 LLM
 # =============================================================================
-ANTHROPIC_API_KEY = "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"  # Add your API key here
+ANTHROPIC_API_KEY = ""  # Add your API key here
 MODEL = "claude-haiku-4-5-20251001"
 
 # =============================================================================
